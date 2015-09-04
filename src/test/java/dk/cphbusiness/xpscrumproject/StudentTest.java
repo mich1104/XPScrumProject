@@ -72,6 +72,17 @@ public class StudentTest {
         assertTrue(name.equals(result));
     }
 
+    @Test
+    public void setGetGrades() {
+        int first = 1;
+        int second = 2;
+        student.setGrades(first, second);
+        int[] result = student.getGrades();
+        assertTrue(result.length == 2);
+        assertTrue(result[0] == 1);
+        assertTrue(result[1] == 2);
+    }
+
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
