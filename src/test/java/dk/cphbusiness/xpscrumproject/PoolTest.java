@@ -95,9 +95,14 @@ public class PoolTest {
         assertNull(resultB);
     }
     
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    @Test
+    public void testAddRemoveFromUnassigned() {
+        Fag fag = new Fag("test","test","test");
+        pool.addToUnassigned(fag);
+        List<Fag> list = pool.getUnassignedPool();
+        assertTrue(list.get(0).equals(fag));
+        pool.removeFromUnassignedPool(fag);
+        list = pool.getUnassignedPool();
+        assertTrue(list.size() == 0);
+    }
 }

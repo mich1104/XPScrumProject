@@ -14,9 +14,9 @@ import java.util.List;
  */
 public class Pool implements PoolInterface {
 
-    List<Fag> unassignedPool;
-    List<Fag> poolA;
-    List<Fag> poolB;
+    private List<Fag> unassignedPool;
+    private List<Fag> poolA;
+    private List<Fag> poolB;
 
     public Pool() {
         this.unassignedPool = new ArrayList();
@@ -83,6 +83,11 @@ public class Pool implements PoolInterface {
         } else {
             return null;
         }
+    }
+
+    @Override
+    public void addToUnassigned(Fag fag) {
+        unassignedPool.add(fag);
     }
 
 }

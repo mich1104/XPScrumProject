@@ -24,5 +24,6 @@ public interface PoolInterface {
     
     Fag removeFromPoolA(Fag fag);
     Fag removeFromPoolB(Fag fag);
+    void addToUnassigned(Fag fag);
     Fag removeFromUnassignedPool(Fag fag);
 }
