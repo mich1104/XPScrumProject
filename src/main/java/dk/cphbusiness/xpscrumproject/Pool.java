@@ -14,9 +14,9 @@ import java.util.List;
  */
 public class Pool implements PoolInterface {
 
-    private List<Fag> unassignedPool;
-    private List<Fag> poolA;
-    private List<Fag> poolB;
+    private List<Subject> unassignedPool;
+    private List<Subject> poolA;
+    private List<Subject> poolB;
 
     public Pool() {
         this.unassignedPool = new ArrayList();
@@ -25,37 +25,37 @@ public class Pool implements PoolInterface {
     }
 
     @Override
-    public void setUnassignedPool(List<Fag> list) {
+    public void setUnassignedPool(List<Subject> list) {
         unassignedPool = list;
     }
 
     @Override
-    public List<Fag> getUnassignedPool() {
+    public List<Subject> getUnassignedPool() {
         return unassignedPool;
     }
 
     @Override
-    public void addToPoolA(Fag fag) {
+    public void addToPoolA(Subject fag) {
         poolA.add(fag);
     }
 
     @Override
-    public List<Fag> getPoolA() {
+    public List<Subject> getPoolA() {
         return poolA;
     }
 
     @Override
-    public void addToPoolB(Fag fag) {
+    public void addToPoolB(Subject fag) {
         poolB.add(fag);
     }
 
     @Override
-    public List<Fag> getPoolB() {
+    public List<Subject> getPoolB() {
         return poolB;
     }
 
     @Override
-    public Fag removeFromPoolA(Fag fag) {
+    public Subject removeFromPoolA(Subject fag) {
         if (poolA.contains(fag)) {
             poolA.remove(fag);
             return fag;
@@ -66,7 +66,7 @@ public class Pool implements PoolInterface {
     }
 
     @Override
-    public Fag removeFromPoolB(Fag fag) {
+    public Subject removeFromPoolB(Subject fag) {
         if (poolB.contains(fag)) {
             poolB.remove(fag);
             return fag;
@@ -76,7 +76,7 @@ public class Pool implements PoolInterface {
     }
 
     @Override
-    public Fag removeFromUnassignedPool(Fag fag) {
+    public Subject removeFromUnassignedPool(Subject fag) {
         if (unassignedPool.contains(fag)) {
             unassignedPool.remove(fag);
             return fag;
@@ -86,7 +86,7 @@ public class Pool implements PoolInterface {
     }
 
     @Override
-    public void addToUnassigned(Fag fag) {
+    public void addToUnassigned(Subject fag) {
         unassignedPool.add(fag);
     }
 

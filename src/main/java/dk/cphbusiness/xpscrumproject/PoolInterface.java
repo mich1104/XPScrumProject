@@ -13,17 +13,17 @@ import java.util.List;
  */
 public interface PoolInterface {
     
-    void setUnassignedPool(List<Fag> list);
-    List<Fag> getUnassignedPool();
+    void setUnassignedPool(List<Subject> list);
+    List<Subject> getUnassignedPool();
     
-    void addToPoolA(Fag fag);
-    List<Fag> getPoolA();
+    void addToPoolA(Subject fag);
+    List<Subject> getPoolA();
     
-    void addToPoolB(Fag fag);
-    List<Fag> getPoolB();
+    void addToPoolB(Subject fag);
+    List<Subject> getPoolB();
     
-    Fag removeFromPoolA(Fag fag);
-    Fag removeFromPoolB(Fag fag);
-    void addToUnassigned(Fag fag);
-    Fag removeFromUnassignedPool(Fag fag);
+    Subject removeFromPoolA(Subject fag);
+    Subject removeFromPoolB(Subject fag);
+    void addToUnassigned(Subject fag);
+    Subject removeFromUnassignedPool(Subject fag);
 }

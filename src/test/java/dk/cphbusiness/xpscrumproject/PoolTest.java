@@ -6,7 +6,7 @@ package dk.cphbusiness.xpscrumproject;
  * and open the template in the editor.
  */
 
-import dk.cphbusiness.xpscrumproject.Fag;
+import dk.cphbusiness.xpscrumproject.Subject;
 import dk.cphbusiness.xpscrumproject.Pool;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,11 +48,11 @@ public class PoolTest {
 
     @Test
     public void setGetRemoveUnassignedPool() {
-        List<Fag> list = new ArrayList();
-         Fag fag = new Fag("test","test","test");
+        List<Subject> list = new ArrayList();
+         Subject fag = new Subject("test","test","test");
         list.add(fag);
         pool.setUnassignedPool(list);
-        List<Fag> result = pool.getUnassignedPool();
+        List<Subject> result = pool.getUnassignedPool();
         assertTrue(result.get(0).equals(fag));
         pool.removeFromUnassignedPool(fag);
         result = pool.getUnassignedPool();
@@ -62,9 +62,9 @@ public class PoolTest {
 
     @Test
     public void addGetRemovePoolA() {
-        Fag fag = new Fag("test","test","test");
+        Subject fag = new Subject("test","test","test");
         pool.addToPoolA(fag);
-        List<Fag> list = pool.getPoolA();
+        List<Subject> list = pool.getPoolA();
         assertTrue(list.get(0).equals(fag));
         pool.removeFromPoolA(fag);
         list = pool.getPoolA();
@@ -73,9 +73,9 @@ public class PoolTest {
 
     @Test
     public void addGetRemovePoolB() {
-        Fag fag = new Fag("test","test","test");
+        Subject fag = new Subject("test","test","test");
         pool.addToPoolB(fag);
-        List<Fag> list = pool.getPoolB();
+        List<Subject> list = pool.getPoolB();
         assertTrue(list.get(0).equals(fag));
         pool.removeFromPoolB(fag);
         list = pool.getPoolB();
@@ -85,10 +85,10 @@ public class PoolTest {
     @Test
     public void returnsNull(){
         pool = new Pool();
-        Fag fag = new Fag("test","test","test");
-        Fag resultUnassigned = pool.removeFromUnassignedPool(fag);
-        Fag resultA = pool.removeFromPoolA(fag);
-        Fag resultB = pool.removeFromPoolB(fag);
+        Subject fag = new Subject("test","test","test");
+        Subject resultUnassigned = pool.removeFromUnassignedPool(fag);
+        Subject resultA = pool.removeFromPoolA(fag);
+        Subject resultB = pool.removeFromPoolB(fag);
         
         assertNull(resultUnassigned);
         assertNull(resultA);
@@ -97,9 +97,9 @@ public class PoolTest {
     
     @Test
     public void testAddRemoveFromUnassigned() {
-        Fag fag = new Fag("test","test","test");
+        Subject fag = new Subject("test","test","test");
         pool.addToUnassigned(fag);
-        List<Fag> list = pool.getUnassignedPool();
+        List<Subject> list = pool.getUnassignedPool();
         assertTrue(list.get(0).equals(fag));
         pool.removeFromUnassignedPool(fag);
         list = pool.getUnassignedPool();

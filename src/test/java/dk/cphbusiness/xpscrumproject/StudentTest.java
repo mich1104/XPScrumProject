@@ -6,7 +6,7 @@ package dk.cphbusiness.xpscrumproject;
  * and open the template in the editor.
  */
 
-import dk.cphbusiness.xpscrumproject.Fag;
+import dk.cphbusiness.xpscrumproject.Subject;
 import dk.cphbusiness.xpscrumproject.Student;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -46,20 +46,20 @@ public class StudentTest {
 
     @Test
     public void setGetFirstPriorities() {
-        Fag fag1 = new Fag("test1", "test1", "test1");
-        Fag fag2 = new Fag("test2", "test2", "test2");
+        Subject fag1 = new Subject("test1", "test1", "test1");
+        Subject fag2 = new Subject("test2", "test2", "test2");
         student.setFirstPriority(fag1, fag2);
-        Fag[] array = student.getFirstPriority();
+        Subject[] array = student.getFirstPriority();
         assertTrue(array[0].equals(fag1));
         assertTrue(array[1].equals(fag2));
     }
 
     @Test
     public void setGetSecondPriorities() {
-        Fag fag1 = new Fag("test1", "test1", "test1");
-        Fag fag2 = new Fag("test2", "test2", "test2");
+        Subject fag1 = new Subject("test1", "test1", "test1");
+        Subject fag2 = new Subject("test2", "test2", "test2");
         student.setSecondPriority(fag1,fag2);
-        Fag[] array = student.getSecondPriority();
+        Subject[] array = student.getSecondPriority();
         assertTrue(array[0].equals(fag1));
         assertTrue(array[1].equals(fag2));
     }

@@ -44,9 +44,9 @@ public class ControllerTest {
     public void testGetUnassignedList(){
         
         control.setPool(pool);
-        List<FagInterface> expectationReturn = new ArrayList<FagInterface>(){{
-                add(context.mock(FagInterface.class, "Android"));
-                add(context.mock(FagInterface.class, "AI"));
+        List<SubjectInterface> expectationReturn = new ArrayList<SubjectInterface>(){{
+                add(context.mock(SubjectInterface.class, "Android"));
+                add(context.mock(SubjectInterface.class, "AI"));
             }};
         
         context.checking(new Expectations(){{ 
@@ -54,7 +54,7 @@ public class ControllerTest {
             will(returnValue(expectationReturn));
         }});
         
-        List<Fag> listOfSubjects = control.getUnassignedList();
+        List<Subject> listOfSubjects = control.getUnassignedList();
         
         assertThat(listOfSubjects.size(), is(2));
     }
@@ -62,9 +62,9 @@ public class ControllerTest {
     @Test
     public void testGetPoolAList(){
         control.setPool(pool);
-        List<FagInterface> expectationReturn = new ArrayList<FagInterface>(){{
-                add(context.mock(FagInterface.class, "Android"));
-                add(context.mock(FagInterface.class, "AI"));
+        List<SubjectInterface> expectationReturn = new ArrayList<SubjectInterface>(){{
+                add(context.mock(SubjectInterface.class, "Android"));
+                add(context.mock(SubjectInterface.class, "AI"));
             }};
         
         context.checking(new Expectations(){{ 
@@ -72,7 +72,7 @@ public class ControllerTest {
             will(returnValue(expectationReturn));
         }});
         
-        List<Fag> listOfSubjects = control.getPoolAList();
+        List<Subject> listOfSubjects = control.getPoolAList();
         
         assertThat(listOfSubjects.size(), is(2));
     }
@@ -80,9 +80,9 @@ public class ControllerTest {
     @Test
     public void testGetPoolBList(){
         control.setPool(pool);
-        List<FagInterface> expectationReturn = new ArrayList<FagInterface>(){{
-                add(context.mock(FagInterface.class, "Android"));
-                add(context.mock(FagInterface.class, "AI"));
+        List<SubjectInterface> expectationReturn = new ArrayList<SubjectInterface>(){{
+                add(context.mock(SubjectInterface.class, "Android"));
+                add(context.mock(SubjectInterface.class, "AI"));
             }};
         
         context.checking(new Expectations(){{ 
@@ -90,7 +90,7 @@ public class ControllerTest {
             will(returnValue(expectationReturn));
         }});
         
-        List<Fag> listOfSubjects = control.getPoolBList();
+        List<Subject> listOfSubjects = control.getPoolBList();
         
         assertThat(listOfSubjects.size(), is(2));
     }
@@ -99,7 +99,7 @@ public class ControllerTest {
     public void testAddToAndRemoveFromPoolA(){
         control.setPool(pool);
         
-        Fag android = contextForClassMocking.mock(Fag.class, "android");
+        Subject android = contextForClassMocking.mock(Subject.class, "android");
         
         context.checking(new Expectations(){{
             oneOf(pool).addToPoolA(android);
@@ -108,7 +108,7 @@ public class ControllerTest {
         }});
         
         control.addtoPoolA(android);
-        Fag returned = control.removeFromPoolA(android);
+        Subject returned = control.removeFromPoolA(android);
         
         assertThat(returned, is(android));
     }
@@ -117,7 +117,7 @@ public class ControllerTest {
     public void testAddToAndRemoveFromPoolB(){
         control.setPool(pool);
         
-        Fag android = contextForClassMocking.mock(Fag.class, "android");
+        Subject android = contextForClassMocking.mock(Subject.class, "android");
         
         context.checking(new Expectations(){{
             oneOf(pool).addToPoolB(android);
@@ -126,7 +126,7 @@ public class ControllerTest {
         }});
         
         control.addtoPoolB(android);
-        Fag returned = control.removeFromPoolB(android);
+        Subject returned = control.removeFromPoolB(android);
         
         assertThat(returned, is(android));
     }
@@ -135,7 +135,7 @@ public class ControllerTest {
     public void testAddToAndRemoveFromUnassigned(){
         control.setPool(pool);
         
-        Fag android = contextForClassMocking.mock(Fag.class, "android");
+        Subject android = contextForClassMocking.mock(Subject.class, "android");
         
         context.checking(new Expectations(){{
             oneOf(pool).addToUnassigned(android);
@@ -144,7 +144,7 @@ public class ControllerTest {
         }});
         
         control.addToUnassigned(android);
-        Fag returned = control.removeFromUnassigned(android);
+        Subject returned = control.removeFromUnassigned(android);
         
         assertThat(returned, is(android));
     }

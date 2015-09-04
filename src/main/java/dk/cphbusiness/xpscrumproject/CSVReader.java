@@ -59,8 +59,8 @@ public class CSVReader implements CSVReaderInterface{
            String secondPrioTwo = attributes[4];
            
            StudentInterface student = new Student(name);
-           student.setFirstPriority(new Fag(firstPrioOne, null, null), new Fag(firstPrioTwo, null, null));
-           student.setSecondPriority(new Fag(secondPrioOne, null, null), new Fag(secondPrioTwo, null, null));
+           student.setFirstPriority(new Subject(firstPrioOne, null, null), new Subject(firstPrioTwo, null, null));
+           student.setSecondPriority(new Subject(secondPrioOne, null, null), new Subject(secondPrioTwo, null, null));
            
            arrayForReturn.add(student);
        }

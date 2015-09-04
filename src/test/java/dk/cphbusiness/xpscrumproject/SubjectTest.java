@@ -6,7 +6,7 @@ package dk.cphbusiness.xpscrumproject;
  * and open the template in the editor.
  */
 
-import dk.cphbusiness.xpscrumproject.Subject;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertTrue;

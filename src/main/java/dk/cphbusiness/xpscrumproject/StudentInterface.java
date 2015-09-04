@@ -13,10 +13,10 @@ public interface StudentInterface {
     
     void setName(String name);
     String getName();
-    void setFirstPriority(Fag fag1, Fag fag2);
-    void setSecondPriority(Fag fag3, Fag fag4);
-    Fag[] getFirstPriority();
-    Fag[] getSecondPriority();
+    void setFirstPriority(Subject fag1, Subject fag2);
+    void setSecondPriority(Subject fag3, Subject fag4);
+    Subject[] getFirstPriority();
+    Subject[] getSecondPriority();
     void setGrades(int first,int second);
     int[] getGrades();
     

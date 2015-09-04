@@ -20,47 +20,47 @@ public class Controller implements ControllerInterface {
     }
     
     @Override
-    public List<Fag> getUnassignedList() {
+    public List<Subject> getUnassignedList() {
         return pool.getUnassignedPool();
     }
 
     @Override
-    public List<Fag> getPoolAList() {
+    public List<Subject> getPoolAList() {
         return pool.getPoolA();
     }
 
     @Override
-    public List<Fag> getPoolBList() {
+    public List<Subject> getPoolBList() {
         return pool.getPoolB();
     }
 
     @Override
-    public void addtoPoolA(Fag fag) {
+    public void addtoPoolA(Subject fag) {
         pool.addToPoolA(fag);
     }
 
     @Override
-    public Fag removeFromPoolA(Fag fag) {
+    public Subject removeFromPoolA(Subject fag) {
         return pool.removeFromPoolA(fag);
     }
 
     @Override
-    public void addtoPoolB(Fag fag) {
+    public void addtoPoolB(Subject fag) {
         pool.addToPoolB(fag);
     }
 
     @Override
-    public Fag removeFromPoolB(Fag fag) {
+    public Subject removeFromPoolB(Subject fag) {
         return pool.removeFromPoolB(fag);
     }
 
     @Override
-    public void addToUnassigned(Fag fag) {
+    public void addToUnassigned(Subject fag) {
         pool.addToUnassigned(fag);
     }
 
     @Override
-    public Fag removeFromUnassigned(Fag fag) {
+    public Subject removeFromUnassigned(Subject fag) {
         return pool.removeFromUnassignedPool(fag);
     }
 
@@ -70,7 +70,7 @@ public class Controller implements ControllerInterface {
     }
     
     @Override
-    public Boolean submitPools(List<Fag> poolA, List<Fag> poolB) {
+    public Boolean submitPools(List<Subject> poolA, List<Subject> poolB) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

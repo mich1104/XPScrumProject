@@ -12,8 +12,8 @@ package dk.cphbusiness.xpscrumproject;
 public class Student implements StudentInterface {
 
     private String name;
-    private Fag[] firstPriority = new Fag[2];
-    private Fag[] secondPriority = new Fag[2];
+    private Subject[] firstPriority = new Subject[2];
+    private Subject[] secondPriority = new Subject[2];
     private int[] grades;
 
     public Student(String name) {
@@ -32,24 +32,24 @@ public class Student implements StudentInterface {
     }
 
     @Override
-    public void setFirstPriority(Fag fag1, Fag fag2) {
+    public void setFirstPriority(Subject fag1, Subject fag2) {
         firstPriority[0] = fag1;
         firstPriority[1] = fag2;
     }
 
     @Override
-    public void setSecondPriority(Fag fag3, Fag fag4) {
+    public void setSecondPriority(Subject fag3, Subject fag4) {
         secondPriority[0] = fag3;
         secondPriority[1] = fag4;
     }
 
     @Override
-    public Fag[] getFirstPriority() {
+    public Subject[] getFirstPriority() {
         return firstPriority;
     }
 
     @Override
-    public Fag[] getSecondPriority() {
+    public Subject[] getSecondPriority() {
         return secondPriority;
     }
 

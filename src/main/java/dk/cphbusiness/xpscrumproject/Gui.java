@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 public class Gui extends javax.swing.JFrame {
 
     
-    ControlInterface control;
+    ControllerInterface control;
     DefaultListModel poolA = new DefaultListModel();
     DefaultListModel poolB = new DefaultListModel();
     DefaultListModel poolUn = new DefaultListModel();
@@ -26,7 +26,7 @@ public class Gui extends javax.swing.JFrame {
      * Creates new form Gui
      */
     public Gui() {
-        control = new Control();
+        control = new Controller();
         initComponents();
         setjList();
         
@@ -50,15 +50,15 @@ public class Gui extends javax.swing.JFrame {
     }
     
     public void setjList(){
-        List<Fag> poolAList = control.getPoolAList();
+        List<Subject> poolAList = control.getPoolAList();
         for (int i = 0; i < poolA.size(); i++) {
             poolA.addElement(poolAList.get(i));
         }
-        List<Fag> poolBList = control.getPoolBList();
+        List<Subject> poolBList = control.getPoolBList();
         for (int i = 0; i < poolA.size(); i++) {
             poolB.addElement(poolAList.get(i));
         }
-        List<Fag> poolUnList = control.getUnList();
+        List<Subject> poolUnList = control.getUnassignedList();
         for (int i = 0; i < poolA.size(); i++) {
             poolUn.addElement(poolAList.get(i));
         }
@@ -258,7 +258,7 @@ public class Gui extends javax.swing.JFrame {
         if(unList.isEmpty()){
         }else{
             for (int i = 0; i < unList.size(); i++) {
-                control.addtoPoolA(control.removeFromUnassigned((Fag)unList.get(i)));
+                control.addtoPoolA(control.removeFromUnassigned((Subject)unList.get(i)));
                 
             }
         }
@@ -269,7 +269,7 @@ public class Gui extends javax.swing.JFrame {
         if(unList.isEmpty()){
         }else{
             for (int i = 0; i < unList.size(); i++) {
-                control.addtoPoolB(control.removeFromUnassigned((Fag)unList.get(i)));
+                control.addtoPoolB(control.removeFromUnassigned((Subject)unList.get(i)));
                 
             }
         }
@@ -280,7 +280,7 @@ public class Gui extends javax.swing.JFrame {
         if(bList.isEmpty()){
         }else{
             for (int i = 0; i < bList.size(); i++) {
-                control.addtoPoolA(control.removeFromPoolB((Fag)bList.get(i)));
+                control.addtoPoolA(control.removeFromPoolB((Subject)bList.get(i)));
                 
             }
         }
@@ -291,7 +291,7 @@ public class Gui extends javax.swing.JFrame {
         if(aList.isEmpty()){
         }else{
             for (int i = 0; i < aList.size(); i++) {
-                control.addtoPoolB(control.removeFromPoolA((Fag)aList.get(i)));
+                control.addtoPoolB(control.removeFromPoolA((Subject)aList.get(i)));
                 
             }
         }
@@ -303,7 +303,7 @@ public class Gui extends javax.swing.JFrame {
         if(aList.isEmpty()){
         }else{
             for (int i = 0; i < aList.size(); i++) {
-                control.addToUnassigned(control.removeFromPoolA((Fag)aList.get(i)));
+                control.addToUnassigned(control.removeFromPoolA((Subject)aList.get(i)));
             }
         }
         }else if(jListPoolB.isShowing()){
@@ -311,7 +311,7 @@ public class Gui extends javax.swing.JFrame {
         if(bList.isEmpty()){
         }else{
             for (int i = 0; i < bList.size(); i++) {
-                control.addToUnassigned(control.removeFromPoolB((Fag)bList.get(i)));
+                control.addToUnassigned(control.removeFromPoolB((Subject)bList.get(i)));
             }
         }
         }
