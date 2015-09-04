@@ -36,32 +36,32 @@ public class Controller implements ControllerInterface {
 
     @Override
     public void addtoPoolA(Fag fag) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        pool.addToPoolA(fag);
     }
 
     @Override
     public Fag removeFromPoolA(Fag fag) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return pool.removeFromPoolA(fag);
     }
 
     @Override
     public void addtoPoolB(Fag fag) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        pool.addToPoolB(fag);
     }
 
     @Override
     public Fag removeFromPoolB(Fag fag) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return pool.removeFromPoolB(fag);
     }
 
     @Override
     public void addToUnassigned(Fag fag) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        pool.addToUnassigned(fag);
     }
 
     @Override
     public Fag removeFromUnassigned(Fag fag) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return pool.removeFromUnassignedPool(fag);
     }
 
     @Override

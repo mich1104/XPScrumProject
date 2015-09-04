@@ -13,7 +13,7 @@ import org.junit.Test;
 import org.jmock.Mockery;
 import org.jmock.integration.junit4.JUnitRuleMockery;
 import static org.junit.Assert.assertThat;
-import org.junit.Before;
+import org.jmock.lib.legacy.ClassImposteriser;
 
 /**
  *
@@ -24,6 +24,9 @@ public class ControllerTest {
     private final PoolInterface pool;
     private final Controller control;
     private final Mockery context = new JUnitRuleMockery();
+    private final Mockery contextForClassMocking = new Mockery(){{
+        setImposteriser(ClassImposteriser.INSTANCE);
+    }};
     
     public ControllerTest() {
         
@@ -90,5 +93,59 @@ public class ControllerTest {
         List<Fag> listOfSubjects = control.getPoolBList();
         
         assertThat(listOfSubjects.size(), is(2));
+    }
+    
+    @Test
+    public void testAddToAndRemoveFromPoolA(){
+        control.setPool(pool);
+        
+        Fag android = contextForClassMocking.mock(Fag.class, "android");
+        
+        context.checking(new Expectations(){{
+            oneOf(pool).addToPoolA(android);
+            oneOf(pool).removeFromPoolA(android);
+            will(returnValue(android));
+        }});
+        
+        control.addtoPoolA(android);
+        Fag returned = control.removeFromPoolA(android);
+        
+        assertThat(returned, is(android));
+    }
+    
+    @Test
+    public void testAddToAndRemoveFromPoolB(){
+        control.setPool(pool);
+        
+        Fag android = contextForClassMocking.mock(Fag.class, "android");
+        
+        context.checking(new Expectations(){{
+            oneOf(pool).addToPoolB(android);
+            oneOf(pool).removeFromPoolB(android);
+            will(returnValue(android));
+        }});
+        
+        control.addtoPoolB(android);
+        Fag returned = control.removeFromPoolB(android);
+        
+        assertThat(returned, is(android));
+    }
+    
+    @Test
+    public void testAddToAndRemoveFromUnassigned(){
+        control.setPool(pool);
+        
+        Fag android = contextForClassMocking.mock(Fag.class, "android");
+        
+        context.checking(new Expectations(){{
+            oneOf(pool).addToUnassigned(android);
+            oneOf(pool).removeFromUnassignedPool(android);
+            will(returnValue(android));
+        }});
+        
+        control.addToUnassigned(android);
+        Fag returned = control.removeFromUnassigned(android);
+        
+        assertThat(returned, is(android));
     }
 }
