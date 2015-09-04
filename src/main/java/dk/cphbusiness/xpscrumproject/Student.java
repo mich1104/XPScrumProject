@@ -14,9 +14,11 @@ public class Student implements StudentInterface {
     private String name;
     private Fag[] firstPriority = new Fag[2];
     private Fag[] secondPriority = new Fag[2];
+    private int[] grades;
 
     public Student(String name) {
         this.name = name;
+        this.grades = new int[]{0,0};
     }
 
     @Override
@@ -49,6 +51,17 @@ public class Student implements StudentInterface {
     @Override
     public Fag[] getSecondPriority() {
         return secondPriority;
+    }
+
+    @Override
+    public void setGrades(int first, int second) {
+        grades[0] = first;
+        grades[1] = second;
+    }
+
+    @Override
+    public int[] getGrades() {
+        return grades;
     }
 
 }

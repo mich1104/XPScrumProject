@@ -17,5 +17,7 @@ public interface StudentInterface {
     void setSecondPriority(Fag fag3, Fag fag4);
     Fag[] getFirstPriority();
     Fag[] getSecondPriority();
+    void setGrades(int first,int second);
+    int[] getGrades();
     
 }
