@@ -18,9 +18,9 @@ import static org.junit.Assert.*;
  *
  * @author Michael
  */
-public class TestCSVReader {
+public class CSVReaderTest {
     
-    public TestCSVReader() {
+    public CSVReaderTest() {
         /*
         *   Testing that the FileReader can return a list of Students
         *
