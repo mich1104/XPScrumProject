@@ -17,8 +17,8 @@ public class Controller implements ControllerInterface {
     
     public Controller(){
         pool = new Pool();
-    }
-    
+    }	
+
     @Override
     public List<Subject> getUnassignedList() {
         return pool.getUnassignedPool();
@@ -65,7 +65,7 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public List<Student> calculate() {
+    public List<Student> calculate() { 
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

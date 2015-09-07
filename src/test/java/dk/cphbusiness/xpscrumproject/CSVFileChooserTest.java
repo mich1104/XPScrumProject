@@ -30,7 +30,7 @@ public class CSVFileChooserTest {
     @Test
     public void testFileChooserTxt() throws IOException {
         ArrayList<StudentInterface> array = CSVFileChooser.run();
-        assertTrue(array.get(0).getName().equals("Kurt Mikkelsen"));
+        assertTrue(array.get(0).getName().equals("name"));
     }
 
 //    @Test
