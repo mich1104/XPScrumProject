@@ -22,7 +22,7 @@ public class CSVFileChooser {
     public static ArrayList<StudentInterface> run() throws IOException {
         JFileChooser openFile = new JFileChooser();
         FileNameExtensionFilter filter = new FileNameExtensionFilter(
-                ".txt", "txt");
+                ".csv", "csv");
         openFile.setFileFilter(filter);
         int returnVal = openFile.showOpenDialog(null);
 
@@ -30,11 +30,11 @@ public class CSVFileChooser {
             File file = openFile.getSelectedFile();  
             //I know a string split might have been more straight forward, but for some reason i could not manage to split the string from file.getName()
             String filetype = file.getName().substring(file.getName().length()-3);
-            if (filetype.equals("txt")) {
-                System.out.println("txt file opened and sendt to file reader");
+            if (filetype.equals("csv")) {
+                System.out.println("csv file opened and sendt to file reader");
                 return reader.loadStudents(file.getPath());
             } else {
-                System.out.println("Wrong filetype. Only txt are accepted. Aborting opening file.");
+                System.out.println("Wrong filetype. Only csv are accepted. Aborting opening file.");
                 return null;
             }
         } else {
