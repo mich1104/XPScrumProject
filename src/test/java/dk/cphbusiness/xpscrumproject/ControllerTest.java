@@ -8,12 +8,14 @@ package dk.cphbusiness.xpscrumproject;
 import java.util.ArrayList;
 import java.util.List;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
 import org.jmock.Expectations;
 import org.junit.Test;
 import org.jmock.Mockery;
 import org.jmock.integration.junit4.JUnitRuleMockery;
 import static org.junit.Assert.assertThat;
 import org.jmock.lib.legacy.ClassImposteriser;
+import static org.junit.Assert.assertNull;
 
 /**
  *
@@ -147,5 +149,36 @@ public class ControllerTest {
         Subject returned = control.removeFromUnassigned(android);
         
         assertThat(returned, is(android));
+    }
+    
+    @Test
+    public void testLoadStudentsAndGetStudents() throws Exception{
+        CSVReaderInterface reader = context.mock(CSVReaderInterface.class);
+        StudentInterface anders = context.mock(StudentInterface.class, "anders");
+        StudentInterface lars = context.mock(StudentInterface.class, "lars");
+        
+        ArrayList<StudentInterface> list = new ArrayList(){{
+            add(anders);
+            add(lars);
+        }};
+        
+        context.checking(new Expectations(){{
+            oneOf(reader).loadStudents("src/students.csv");
+            will(returnValue(list));
+        }});
+        
+        control.setReader(reader);
+        assertNull(control.getStudents());
+        control.loadStudents();
+        assertThat(control.getStudents(), is(list));
+    }
+    
+    @Test
+    public void testCSVReaderInjection(){
+        CSVReaderInterface csv = context.mock(CSVReaderInterface.class);
+        
+        assertThat(control.getReader(), is(not(csv)));
+        control.setReader(csv);
+        assertThat(control.getReader(), is(csv));
     }
 }

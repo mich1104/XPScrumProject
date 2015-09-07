@@ -5,7 +5,10 @@
  */
 package dk.cphbusiness.xpscrumproject;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -14,9 +17,12 @@ import java.util.List;
 public class Controller implements ControllerInterface {
 
     private PoolInterface pool;
+    private List<StudentInterface> students;
+    private CSVReaderInterface csv;
     
     public Controller(){
         pool = new Pool();
+        csv = new CSVReader();
     }
     
     @Override
@@ -65,8 +71,23 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public List<Student> calculate() {
+    public void calculate() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    @Override
+    public void loadStudents(){
+        
+        try {
+            students = csv.loadStudents("src/students.csv");
+        } catch (IOException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    @Override
+    public List<StudentInterface> getStudents(){
+        return students;
     }
     
     @Override
@@ -80,5 +101,13 @@ public class Controller implements ControllerInterface {
     
     public PoolInterface getPool(){
         return pool;
+    }
+    
+    public void setReader(CSVReaderInterface csv){
+        this.csv = csv;
+    }
+    
+    public CSVReaderInterface getReader(){
+        return csv;
     }
 }

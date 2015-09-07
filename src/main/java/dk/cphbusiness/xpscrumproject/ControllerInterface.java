@@ -23,5 +23,7 @@ public interface ControllerInterface {
     Subject removeFromPoolB(Subject fag);
     void addToUnassigned(Subject fag);
     Subject removeFromUnassigned(Subject fag);
-    List<Student> calculate();
+    void calculate();
+    void loadStudents();
+    List<StudentInterface> getStudents();
 }
