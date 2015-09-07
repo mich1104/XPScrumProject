@@ -7,7 +7,8 @@ package dk.cphbusiness.xpscrumproject;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import static org.junit.Assert.assertTrue;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -30,7 +31,7 @@ public class CSVFileChooserTest {
     @Test
     public void testFileChooserTxt() throws IOException {
         ArrayList<StudentInterface> array = CSVFileChooser.run();
-        assertTrue(array.get(0).getName().equals("Kurt Mikkelsen"));
+        assertThat(array.size(), is(2));
     }
 
 //    @Test

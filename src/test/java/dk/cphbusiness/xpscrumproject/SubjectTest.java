@@ -20,10 +20,10 @@ import org.junit.Test;
  */
 public class SubjectTest {
 
-    Subject fag;
+    Subject subject;
 
     public SubjectTest() {
-        fag = new Subject("test","test","test");
+        subject = new Subject("test","test","test");
     }
 
     @BeforeClass
@@ -45,25 +45,30 @@ public class SubjectTest {
     @Test
     public void setGetTitle() {
         String title = "Testtitle";
-        fag.setTitle(title);
-        String result = fag.getTitle();
+        subject.setTitle(title);
+        String result = subject.getTitle();
         assertTrue(title.equals(result));
     }
 
     @Test
     public void setGetTeacher() {
         String teacher = "testTeacher";
-        fag.setTeacher(teacher);
-        String result = fag.getTeacher();
+        subject.setTeacher(teacher);
+        String result = subject.getTeacher();
         assertTrue(teacher.equals(result));
     }
     
     @Test
     public void setGetDescription(){
         String description = "TestDescription";
-        fag.setDescription(description);
-        String result = fag.getDescription();
+        subject.setDescription(description);
+        String result = subject.getDescription();
         assertTrue(description.equals(result));
+    }
+    
+    @Test
+    public void subjecToString(){
+        assertTrue(subject.toString().equals("test"));
     }
 
     // TODO add test methods here.

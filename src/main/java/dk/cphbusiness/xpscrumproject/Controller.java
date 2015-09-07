@@ -18,11 +18,9 @@ public class Controller implements ControllerInterface {
 
     private PoolInterface pool;
     private List<StudentInterface> students;
-    private CSVReaderInterface csv;
     
     public Controller(){
         pool = new Pool();
-        csv = new CSVReader();
     }
     
     @Override
@@ -79,9 +77,10 @@ public class Controller implements ControllerInterface {
     public void loadStudents(){
         
         try {
-            students = csv.loadStudents("src/students.csv");
+            students = CSVFileChooser.run();
         } catch (IOException ex) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+            students = null;
         }
     }
     
@@ -102,12 +101,5 @@ public class Controller implements ControllerInterface {
     public PoolInterface getPool(){
         return pool;
     }
-    
-    public void setReader(CSVReaderInterface csv){
-        this.csv = csv;
-    }
-    
-    public CSVReaderInterface getReader(){
-        return csv;
-    }
+
 }

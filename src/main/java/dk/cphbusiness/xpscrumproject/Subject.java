@@ -51,4 +51,9 @@ public class Subject implements SubjectInterface {
         return description;
     }
 
+    @Override
+    public String toString() {
+        return title;
+    }
+    
 }

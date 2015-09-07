@@ -8,7 +8,6 @@ package dk.cphbusiness.xpscrumproject;
 import java.util.ArrayList;
 import java.util.List;
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.not;
 import org.jmock.Expectations;
 import org.junit.Test;
 import org.jmock.Mockery;
@@ -22,163 +21,162 @@ import static org.junit.Assert.assertNull;
  * @author Michael
  */
 public class ControllerTest {
-    
+
     private final PoolInterface pool;
     private final Controller control;
     private final Mockery context = new JUnitRuleMockery();
-    private final Mockery contextForClassMocking = new Mockery(){{
-        setImposteriser(ClassImposteriser.INSTANCE);
-    }};
-    
+    private final Mockery contextForClassMocking = new Mockery() {
+        {
+            setImposteriser(ClassImposteriser.INSTANCE);
+        }
+    };
+
     public ControllerTest() {
-        
+
         pool = context.mock(PoolInterface.class, "pool");
         control = new Controller();
     }
-    
+
     @Test
-    public void testInjector(){
+    public void testInjector() {
         control.setPool(pool);
         assertThat(control.getPool(), is(pool));
     }
-    
+
     @Test
-    public void testGetUnassignedList(){
-        
+    public void testGetUnassignedList() {
+
         control.setPool(pool);
-        List<SubjectInterface> expectationReturn = new ArrayList<SubjectInterface>(){{
+        List<SubjectInterface> expectationReturn = new ArrayList<SubjectInterface>() {
+            {
                 add(context.mock(SubjectInterface.class, "Android"));
                 add(context.mock(SubjectInterface.class, "AI"));
-            }};
-        
-        context.checking(new Expectations(){{ 
-           oneOf(pool).getUnassignedPool();
-            will(returnValue(expectationReturn));
-        }});
-        
+            }
+        };
+
+        context.checking(new Expectations() {
+            {
+                oneOf(pool).getUnassignedPool();
+                will(returnValue(expectationReturn));
+            }
+        });
+
         List<Subject> listOfSubjects = control.getUnassignedList();
-        
+
         assertThat(listOfSubjects.size(), is(2));
     }
-    
+
     @Test
-    public void testGetPoolAList(){
+    public void testGetPoolAList() {
         control.setPool(pool);
-        List<SubjectInterface> expectationReturn = new ArrayList<SubjectInterface>(){{
+        List<SubjectInterface> expectationReturn = new ArrayList<SubjectInterface>() {
+            {
                 add(context.mock(SubjectInterface.class, "Android"));
                 add(context.mock(SubjectInterface.class, "AI"));
-            }};
-        
-        context.checking(new Expectations(){{ 
-           oneOf(pool).getPoolA();
-            will(returnValue(expectationReturn));
-        }});
-        
+            }
+        };
+
+        context.checking(new Expectations() {
+            {
+                oneOf(pool).getPoolA();
+                will(returnValue(expectationReturn));
+            }
+        });
+
         List<Subject> listOfSubjects = control.getPoolAList();
-        
+
         assertThat(listOfSubjects.size(), is(2));
     }
-    
+
     @Test
-    public void testGetPoolBList(){
+    public void testGetPoolBList() {
         control.setPool(pool);
-        List<SubjectInterface> expectationReturn = new ArrayList<SubjectInterface>(){{
+        List<SubjectInterface> expectationReturn = new ArrayList<SubjectInterface>() {
+            {
                 add(context.mock(SubjectInterface.class, "Android"));
                 add(context.mock(SubjectInterface.class, "AI"));
-            }};
-        
-        context.checking(new Expectations(){{ 
-           oneOf(pool).getPoolB();
-            will(returnValue(expectationReturn));
-        }});
-        
+            }
+        };
+
+        context.checking(new Expectations() {
+            {
+                oneOf(pool).getPoolB();
+                will(returnValue(expectationReturn));
+            }
+        });
+
         List<Subject> listOfSubjects = control.getPoolBList();
-        
+
         assertThat(listOfSubjects.size(), is(2));
     }
-    
+
     @Test
-    public void testAddToAndRemoveFromPoolA(){
+    public void testAddToAndRemoveFromPoolA() {
         control.setPool(pool);
-        
+
         Subject android = contextForClassMocking.mock(Subject.class, "android");
-        
-        context.checking(new Expectations(){{
-            oneOf(pool).addToPoolA(android);
-            oneOf(pool).removeFromPoolA(android);
-            will(returnValue(android));
-        }});
-        
+
+        context.checking(new Expectations() {
+            {
+                oneOf(pool).addToPoolA(android);
+                oneOf(pool).removeFromPoolA(android);
+                will(returnValue(android));
+            }
+        });
+
         control.addtoPoolA(android);
         Subject returned = control.removeFromPoolA(android);
-        
+
         assertThat(returned, is(android));
     }
-    
+
     @Test
-    public void testAddToAndRemoveFromPoolB(){
+    public void testAddToAndRemoveFromPoolB() {
         control.setPool(pool);
-        
+
         Subject android = contextForClassMocking.mock(Subject.class, "android");
-        
-        context.checking(new Expectations(){{
-            oneOf(pool).addToPoolB(android);
-            oneOf(pool).removeFromPoolB(android);
-            will(returnValue(android));
-        }});
-        
+
+        context.checking(new Expectations() {
+            {
+                oneOf(pool).addToPoolB(android);
+                oneOf(pool).removeFromPoolB(android);
+                will(returnValue(android));
+            }
+        });
+
         control.addtoPoolB(android);
         Subject returned = control.removeFromPoolB(android);
-        
+
         assertThat(returned, is(android));
     }
-    
+
     @Test
-    public void testAddToAndRemoveFromUnassigned(){
+    public void testAddToAndRemoveFromUnassigned() {
         control.setPool(pool);
-        
+
         Subject android = contextForClassMocking.mock(Subject.class, "android");
-        
-        context.checking(new Expectations(){{
-            oneOf(pool).addToUnassigned(android);
-            oneOf(pool).removeFromUnassignedPool(android);
-            will(returnValue(android));
-        }});
-        
+
+        context.checking(new Expectations() {
+            {
+                oneOf(pool).addToUnassigned(android);
+                oneOf(pool).removeFromUnassignedPool(android);
+                will(returnValue(android));
+            }
+        });
+
         control.addToUnassigned(android);
         Subject returned = control.removeFromUnassigned(android);
-        
+
         assertThat(returned, is(android));
     }
-    
+
     @Test
-    public void testLoadStudentsAndGetStudents() throws Exception{
-        CSVReaderInterface reader = context.mock(CSVReaderInterface.class);
-        StudentInterface anders = context.mock(StudentInterface.class, "anders");
-        StudentInterface lars = context.mock(StudentInterface.class, "lars");
+    public void testLoadStudentsAndGetStudents() throws Exception {
         
-        ArrayList<StudentInterface> list = new ArrayList(){{
-            add(anders);
-            add(lars);
-        }};
-        
-        context.checking(new Expectations(){{
-            oneOf(reader).loadStudents("src/students.csv");
-            will(returnValue(list));
-        }});
-        
-        control.setReader(reader);
+
         assertNull(control.getStudents());
         control.loadStudents();
-        assertThat(control.getStudents(), is(list));
+        assertThat(control.getStudents().size(), is(2));
     }
-    
-    @Test
-    public void testCSVReaderInjection(){
-        CSVReaderInterface csv = context.mock(CSVReaderInterface.class);
-        
-        assertThat(control.getReader(), is(not(csv)));
-        control.setReader(csv);
-        assertThat(control.getReader(), is(csv));
-    }
+
 }
