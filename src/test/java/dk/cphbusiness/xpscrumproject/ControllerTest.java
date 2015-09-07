@@ -22,19 +22,20 @@ import static org.junit.Assert.assertNull;
  */
 public class ControllerTest {
 
-    private final PoolInterface pool;
+    private final Pool pool;
     private final Controller control;
-    private final Mockery context = new JUnitRuleMockery();
-    private final Mockery contextForClassMocking = new Mockery() {
-        {
-            setImposteriser(ClassImposteriser.INSTANCE);
-        }
-    };
+//    private final Mockery context = new JUnitRuleMockery();
+//    private final Mockery contextForClassMocking = new Mockery() {
+//        {
+//            setImposteriser(ClassImposteriser.INSTANCE);
+//        }
+//}
 
     public ControllerTest() {
 
-        pool = context.mock(PoolInterface.class, "pool");
+//        pool = context.mock(PoolInterface.class, "pool");
         control = new Controller();
+        pool = new Pool();
     }
 
     @Test
@@ -46,21 +47,25 @@ public class ControllerTest {
     @Test
     public void testGetUnassignedList() {
 
+           Subject android = new Subject("android", "test", "test");
+        Subject ai = new Subject("ai", "test", "test");
+        pool.addToUnassigned(ai);
+        pool.addToUnassigned(android);
         control.setPool(pool);
-        List<SubjectInterface> expectationReturn = new ArrayList<SubjectInterface>() {
-            {
-                add(context.mock(SubjectInterface.class, "Android"));
-                add(context.mock(SubjectInterface.class, "AI"));
-            }
-        };
+//        List<Subject> expectationReturn = new ArrayList<Subject>();
+//        {
+//            {
+//                add(context.mock(SubjectInterface.class, "Android"));
+//                add(context.mock(SubjectInterface.class, "AI"));
+//            }
+//        };
 
-        context.checking(new Expectations() {
-            {
-                oneOf(pool).getUnassignedPool();
-                will(returnValue(expectationReturn));
-            }
-        });
-
+//        context.checking(new Expectations() {
+//            {
+//                oneOf(pool).getUnassignedPool();
+//                will(returnValue(expectationReturn));
+//            }
+//        });
         List<Subject> listOfSubjects = control.getUnassignedList();
 
         assertThat(listOfSubjects.size(), is(2));
@@ -69,20 +74,23 @@ public class ControllerTest {
     @Test
     public void testGetPoolAList() {
         control.setPool(pool);
-        List<SubjectInterface> expectationReturn = new ArrayList<SubjectInterface>() {
-            {
-                add(context.mock(SubjectInterface.class, "Android"));
-                add(context.mock(SubjectInterface.class, "AI"));
-            }
-        };
+//        List<SubjectInterface> expectationReturn = new ArrayList<SubjectInterface>() {
+//            {
+//                add(context.mock(SubjectInterface.class, "Android"));
+//                add(context.mock(SubjectInterface.class, "AI"));
+//            }
+//        };
 
-        context.checking(new Expectations() {
-            {
-                oneOf(pool).getPoolA();
-                will(returnValue(expectationReturn));
-            }
-        });
-
+//        context.checking(new Expectations() {
+//            {
+//                oneOf(pool).getPoolA();
+//                will(returnValue(expectationReturn));
+//            }
+//        });
+        Subject android = new Subject("android", "test", "test");
+        Subject ai = new Subject("ai", "test", "test");
+        control.addtoPoolA(ai);
+        control.addtoPoolA(android);
         List<Subject> listOfSubjects = control.getPoolAList();
 
         assertThat(listOfSubjects.size(), is(2));
@@ -91,20 +99,23 @@ public class ControllerTest {
     @Test
     public void testGetPoolBList() {
         control.setPool(pool);
-        List<SubjectInterface> expectationReturn = new ArrayList<SubjectInterface>() {
-            {
-                add(context.mock(SubjectInterface.class, "Android"));
-                add(context.mock(SubjectInterface.class, "AI"));
-            }
-        };
-
-        context.checking(new Expectations() {
-            {
-                oneOf(pool).getPoolB();
-                will(returnValue(expectationReturn));
-            }
-        });
-
+//        List<SubjectInterface> expectationReturn = new ArrayList<SubjectInterface>() {
+//            {
+//                add(context.mock(SubjectInterface.class, "Android"));
+//                add(context.mock(SubjectInterface.class, "AI"));
+//            }
+//        };
+//
+//        context.checking(new Expectations() {
+//            {
+//                oneOf(pool).getPoolB();
+//                will(returnValue(expectationReturn));
+//            }
+//        });
+        Subject android = new Subject("android", "test", "test");
+        Subject ai = new Subject("ai", "test", "test");
+        control.addtoPoolB(ai);
+        control.addtoPoolB(android);
         List<Subject> listOfSubjects = control.getPoolBList();
 
         assertThat(listOfSubjects.size(), is(2));
@@ -114,36 +125,37 @@ public class ControllerTest {
     public void testAddToAndRemoveFromPoolA() {
         control.setPool(pool);
 
-        Subject android = contextForClassMocking.mock(Subject.class, "android");
+//        Subject android = contextForClassMocking.mock(Subject.class, "android");
+//
+//        context.checking(new Expectations() {
+//            {
+//                oneOf(pool).addToPoolA(android);
+//                oneOf(pool).removeFromPoolA(android);
+//                will(returnValue(android));
+//            }
+//        });
+        Subject subject = new Subject("android", "test", "test");
 
-        context.checking(new Expectations() {
-            {
-                oneOf(pool).addToPoolA(android);
-                oneOf(pool).removeFromPoolA(android);
-                will(returnValue(android));
-            }
-        });
+        control.addtoPoolA(subject);
+        Subject returned = control.removeFromPoolA(subject);
 
-        control.addtoPoolA(android);
-        Subject returned = control.removeFromPoolA(android);
-
-        assertThat(returned, is(android));
+        assertThat(returned, is(subject));
     }
 
     @Test
     public void testAddToAndRemoveFromPoolB() {
         control.setPool(pool);
 
-        Subject android = contextForClassMocking.mock(Subject.class, "android");
-
-        context.checking(new Expectations() {
-            {
-                oneOf(pool).addToPoolB(android);
-                oneOf(pool).removeFromPoolB(android);
-                will(returnValue(android));
-            }
-        });
-
+//        Subject android = contextForClassMocking.mock(Subject.class, "android");
+//
+//        context.checking(new Expectations() {
+//            {
+//                oneOf(pool).addToPoolB(android);
+//                oneOf(pool).removeFromPoolB(android);
+//                will(returnValue(android));
+//            }
+//        });
+        Subject android = new Subject("android", "test", "test");
         control.addtoPoolB(android);
         Subject returned = control.removeFromPoolB(android);
 
@@ -154,16 +166,16 @@ public class ControllerTest {
     public void testAddToAndRemoveFromUnassigned() {
         control.setPool(pool);
 
-        Subject android = contextForClassMocking.mock(Subject.class, "android");
-
-        context.checking(new Expectations() {
-            {
-                oneOf(pool).addToUnassigned(android);
-                oneOf(pool).removeFromUnassignedPool(android);
-                will(returnValue(android));
-            }
-        });
-
+//        Subject android = contextForClassMocking.mock(Subject.class, "android");
+//
+//        context.checking(new Expectations() {
+//            {
+//                oneOf(pool).addToUnassigned(android);
+//                oneOf(pool).removeFromUnassignedPool(android);
+//                will(returnValue(android));
+//            }
+//        });
+        Subject android = new Subject("android", "test", "test");
         control.addToUnassigned(android);
         Subject returned = control.removeFromUnassigned(android);
 
@@ -172,9 +184,8 @@ public class ControllerTest {
 
     @Test
     public void testLoadStudentsAndGetStudents() throws Exception {
-        
 
-        assertNull(control.getStudents());
+        assertThat(control.getStudents().size(),is(0));
         control.loadStudents();
         assertThat(control.getStudents().size(), is(2));
     }

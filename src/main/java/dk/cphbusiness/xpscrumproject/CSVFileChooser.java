@@ -19,7 +19,7 @@ public class CSVFileChooser {
 
     private static CSVReader reader = new CSVReader();
 
-    public static ArrayList<StudentInterface> run() throws IOException {
+    public static ArrayList<Student> run() throws IOException {
         JFileChooser openFile = new JFileChooser();
         FileNameExtensionFilter filter = new FileNameExtensionFilter(
                 ".csv", "csv");

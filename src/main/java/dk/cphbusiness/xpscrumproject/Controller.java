@@ -6,6 +6,7 @@
 package dk.cphbusiness.xpscrumproject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,11 +17,14 @@ import java.util.logging.Logger;
  */
 public class Controller implements ControllerInterface {
 
-    private PoolInterface pool;
-    private List<StudentInterface> students;
+    private Pool pool;
+    private List<Student> students;
+    private SatisfactionCalculator calc;
     
     public Controller(){
         pool = new Pool();
+        calc = new SatisfactionCalculator();
+        this.students = new ArrayList();
     }
     
     @Override
@@ -69,8 +73,8 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public void calculate() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Student> calculate() {
+        return calc.calculate(students, pool.getPoolA(), pool.getPoolB());
     }
     
     @Override
@@ -85,7 +89,7 @@ public class Controller implements ControllerInterface {
     }
     
     @Override
-    public List<StudentInterface> getStudents(){
+    public List<Student> getStudents(){
         return students;
     }
     
@@ -94,7 +98,7 @@ public class Controller implements ControllerInterface {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void setPool(PoolInterface pool){
+    public void setPool(Pool pool){
         this.pool = pool;
     }
     

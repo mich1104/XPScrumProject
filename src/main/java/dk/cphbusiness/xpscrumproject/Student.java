@@ -18,7 +18,7 @@ public class Student implements StudentInterface {
 
     public Student(String name) {
         this.name = name;
-        this.grades = new int[]{0,0};
+        this.grades = new int[]{0, 0};
     }
 
     @Override
@@ -62,6 +62,16 @@ public class Student implements StudentInterface {
     @Override
     public int[] getGrades() {
         return grades;
+    }
+
+    @Override
+    public void setFirstGrade(int grade) {
+        grades[0] = grade;
+    }
+
+    @Override
+    public void setSecondGrade(int grade) {
+        grades[1] = grade;
     }
 
 }
