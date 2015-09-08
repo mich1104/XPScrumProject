@@ -41,7 +41,7 @@ public class CSVFileSaverTest {
     public void tearDown() {
     }
 
-    @Test
+    /*@Test
     public void saveFileManual() {
         ArrayList<Subject> poolA = new ArrayList();
         ArrayList<Subject> poolB = new ArrayList();
@@ -64,7 +64,7 @@ public class CSVFileSaverTest {
         unaPool.add(notfound1);
 
         assertTrue(save.saveFile(true, unaPool, poolA, poolB));
-    }
+    }*/
 
     @Test
     public void saveFileAuto() {

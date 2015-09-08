@@ -32,7 +32,6 @@ public class Controller implements ControllerInterface {
         }
         calc = new SatisfactionCalculator();
         this.students = new ArrayList();
-        loadStudents();
     }
     
     @Override
@@ -93,7 +92,7 @@ public class Controller implements ControllerInterface {
             students = CSVFileChooser.run(fileName);
         } catch (IOException ex) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
-            students = null;
+            students = new ArrayList<>();
         }
     }
     
