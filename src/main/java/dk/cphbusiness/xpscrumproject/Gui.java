@@ -151,6 +151,11 @@ public class Gui extends javax.swing.JFrame {
         jScrollPane4.setViewportView(jTableResult);
 
         jButtonSubmit.setText("Submit pools");
+        jButtonSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSubmitActionPerformed(evt);
+            }
+        });
 
         jButtonRTLeft.setText("<--");
         jButtonRTLeft.addActionListener(new java.awt.event.ActionListener() {
@@ -243,7 +248,6 @@ public class Gui extends javax.swing.JFrame {
                     .addComponent(jLabelPoolA, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabelPoolB, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(JListUn, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -348,6 +352,10 @@ public class Gui extends javax.swing.JFrame {
        setjList();
        getCalculatedStudents();
     }//GEN-LAST:event_jButtonRemoveActionPerformed
+
+    private void jButtonSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSubmitActionPerformed
+        control.submitPools();
+    }//GEN-LAST:event_jButtonSubmitActionPerformed
 
     /**
      * @param args the command line arguments

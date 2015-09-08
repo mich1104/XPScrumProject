@@ -18,11 +18,13 @@ import java.util.logging.Logger;
 public class Controller implements ControllerInterface {
 
     private Pool pool;
+    private CSVFileSaver csvSaver;
     private List<Student> students;
     private SatisfactionCalculator calc;
     private String[] subs;
     public Controller(){
         pool = new Pool();
+        csvSaver = new CSVFileSaver();
         subs = new String[]{"C#", "Python", "Android", "SW Design", "Games", "Databases", "Test", "Arduino"};
         for(String s:subs){
             Subject subject = new Subject(s,"","");
@@ -101,8 +103,8 @@ public class Controller implements ControllerInterface {
     }
     
     @Override
-    public Boolean submitPools(List<Subject> poolA, List<Subject> poolB) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Boolean submitPools() {
+        return csvSaver.saveFile(true, pool.getUnassignedPool(), pool.getPoolA(), pool.getPoolB());
     }
 
     public void setPool(Pool pool){

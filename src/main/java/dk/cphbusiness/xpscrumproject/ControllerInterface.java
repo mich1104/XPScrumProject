@@ -16,7 +16,7 @@ public interface ControllerInterface {
     List<Subject> getUnassignedList();
     List<Subject> getPoolAList();
     List<Subject> getPoolBList();
-    Boolean submitPools(List<Subject> poolA,List<Subject> poolB);
+    Boolean submitPools();
     void addtoPoolA(Subject fag);
     Subject removeFromPoolA(Subject fag);
     void addtoPoolB(Subject fag);
