@@ -13,6 +13,6 @@ import java.util.ArrayList;
  * @author Michael
  */
 public interface CSVReaderInterface {
-    public ArrayList<StudentInterface> loadStudents(String path) throws IOException;
+    public ArrayList<Student> loadStudents(String path) throws IOException;
     public String getPath();
 }

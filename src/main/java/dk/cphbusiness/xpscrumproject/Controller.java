@@ -6,6 +6,7 @@
 package dk.cphbusiness.xpscrumproject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,11 +17,22 @@ import java.util.logging.Logger;
  */
 public class Controller implements ControllerInterface {
 
-    private PoolInterface pool;
-    private List<StudentInterface> students;
-    
+    private Pool pool;
+    private CSVFileSaver csvSaver;
+    private List<Student> students;
+    private SatisfactionCalculator calc;
+    private String[] subs;
     public Controller(){
         pool = new Pool();
+        csvSaver = new CSVFileSaver();
+        subs = new String[]{"C#", "Python", "Android", "SW Design", "Games", "Databases", "Test", "Arduino"};
+        for(String s:subs){
+            Subject subject = new Subject(s,"","");
+            pool.addToUnassigned(subject);
+        }
+        calc = new SatisfactionCalculator();
+        this.students = new ArrayList();
+        loadStudents();
     }
     
     @Override
@@ -62,15 +74,16 @@ public class Controller implements ControllerInterface {
     public void addToUnassigned(Subject fag) {
         pool.addToUnassigned(fag);
     }
-
+    
     @Override
     public Subject removeFromUnassigned(Subject fag) {
         return pool.removeFromUnassignedPool(fag);
     }
-
+    
     @Override
-    public void calculate() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Student> calculate() {
+       
+        return  calc.calculate(students, pool.getPoolA(), pool.getPoolB()); 
     }
     
     @Override
@@ -85,16 +98,16 @@ public class Controller implements ControllerInterface {
     }
     
     @Override
-    public List<StudentInterface> getStudents(){
+    public List<Student> getStudents(){
         return students;
     }
     
     @Override
-    public Boolean submitPools(List<Subject> poolA, List<Subject> poolB) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Boolean submitPools() {
+        return csvSaver.saveFile(true, pool.getUnassignedPool(), pool.getPoolA(), pool.getPoolB());
     }
 
-    public void setPool(PoolInterface pool){
+    public void setPool(Pool pool){
         this.pool = pool;
     }
     

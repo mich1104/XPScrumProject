@@ -19,5 +19,7 @@ public interface StudentInterface {
     Subject[] getSecondPriority();
     void setGrades(int first,int second);
     int[] getGrades();
+    void setFirstGrade(int grade);
+    void setSecondGrade(int grade);
     
 }

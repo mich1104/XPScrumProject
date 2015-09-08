@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package dk.cphbusiness.xpscrumproject;
 
 import java.io.IOError;
@@ -36,7 +32,7 @@ public class CSVFileChooserTest {
         String fileName = "testFileChooser.csv";
         String path = System.getProperty("user.dir") + System.getProperty("path.seperator") + fileName;
         createTestFile(path);
-        ArrayList<StudentInterface> list = CSVFileChooser.run(fileName);
+        ArrayList<Student> list = CSVFileChooser.run(fileName);
         assertThat(list.size(), is(2));
     }
     
@@ -67,16 +63,5 @@ public class CSVFileChooserTest {
         pw.flush();
         pw.close();
     }
-//    @Test
-//    public void FileChooserInvalid() throws IOException {
-//        ArrayList<StudentInterface> array = CSVFileChooser.run();
-//        assertTrue(array == null);
-//    }
-//
-//    @Test
-//    public void FileChooserCancel() throws IOException {
-//        ArrayList<StudentInterface> array = CSVFileChooser.run();
-//        assertTrue(array == null);
-//    }
-
 }
+

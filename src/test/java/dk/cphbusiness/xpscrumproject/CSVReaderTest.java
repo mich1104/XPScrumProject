@@ -30,7 +30,7 @@ public class CSVReaderTest {
     @Test
     public void testCreateCSVReader(){
         
-        CSVReaderInterface reader = new CSVReader();
+        CSVReader reader = new CSVReader();
         
         //Path should be empty
         //The splitter should be "," as default
@@ -51,7 +51,7 @@ public class CSVReaderTest {
             fail("Failed to create test CSV-file");
         }
         
-        List<StudentInterface> students;
+        List<Student> students;
         students = reader.loadStudents(path);
         
         assertThat(reader.getPath(), is(path));

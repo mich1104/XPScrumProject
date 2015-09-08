@@ -28,7 +28,7 @@ public class CSVReader implements CSVReaderInterface{
     }
 
     @Override
-    public ArrayList<StudentInterface> loadStudents(String path) throws IOException{
+    public ArrayList<Student> loadStudents(String path) throws IOException{
         //throw new UnsupportedOperationException("Not supported yet.");
        this.path = path;
        
@@ -36,7 +36,7 @@ public class CSVReader implements CSVReaderInterface{
        String line;
        String fullDocument = "";
        String[] students;
-       ArrayList<StudentInterface> arrayForReturn = new ArrayList<>();
+       ArrayList<Student> arrayForReturn = new ArrayList<>();
        
        try{
            br = new BufferedReader(new FileReader(path));
@@ -58,7 +58,7 @@ public class CSVReader implements CSVReaderInterface{
            String secondPrioOne = attributes[3];
            String secondPrioTwo = attributes[4];
            
-           StudentInterface student = new Student(name);
+           Student student = new Student(name);
            student.setFirstPriority(new Subject(firstPrioOne, null, null), new Subject(firstPrioTwo, null, null));
            student.setSecondPriority(new Subject(secondPrioOne, null, null), new Subject(secondPrioTwo, null, null));
            
