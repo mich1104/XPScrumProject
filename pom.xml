@@ -44,6 +44,7 @@
             <version>0.7.5.201505241946</version>
             <configuration>
                 <excludes>
+                    <exclude>dk/cphbusiness/xpscrumproject/MyNewCellRenderer.*</exclude>
                     <exclude>dk/cphbusiness/xpscrumproject/Gui*</exclude>
                 </excludes>
             </configuration>

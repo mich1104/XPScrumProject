@@ -5,6 +5,8 @@
  */
 package dk.cphbusiness.xpscrumproject;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import static org.hamcrest.CoreMatchers.is;
@@ -173,10 +175,29 @@ public class ControllerTest {
     @Test
     public void testLoadStudentsAndGetStudents() throws Exception {
         
-
+        String fileName = "testFileChooserThroughContoller.csv";
+        String path = System.getProperty("user.dir") + System.getProperty("path.seperator") + fileName;
+        createTestFile(path);
         assertNull(control.getStudents());
-        control.loadStudents();
+        control.loadStudents(fileName);
         assertThat(control.getStudents().size(), is(2));
+    }
+    
+    @Test
+    public void testLoadStudentsCathingIO() throws Exception {
+        
+        String fileName = "testFileChooserThroughContoller.txt";
+        
+        control.loadStudents(fileName);
+        assertNull(control.getStudents());
+    }
+    
+    public void createTestFile(String path) throws IOException{
+        String toFile = "name, prio1, prio1.1, prio2, prio2.1;name2, prio1, prio1.1, prio2, prio2.1";
+        PrintWriter pw = new PrintWriter(path);
+        pw.print(toFile);
+        pw.flush();
+        pw.close();
     }
 
 }

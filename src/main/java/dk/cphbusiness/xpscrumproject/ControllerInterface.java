@@ -24,6 +24,6 @@ public interface ControllerInterface {
     void addToUnassigned(Subject fag);
     Subject removeFromUnassigned(Subject fag);
     void calculate();
-    void loadStudents();
+    void loadStudents(String fileName);
     List<StudentInterface> getStudents();
 }

@@ -74,10 +74,10 @@ public class Controller implements ControllerInterface {
     }
     
     @Override
-    public void loadStudents(){
+    public void loadStudents(String fileName){
         
         try {
-            students = CSVFileChooser.run();
+            students = CSVFileChooser.run(fileName);
         } catch (IOException ex) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
             students = null;
