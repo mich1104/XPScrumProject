@@ -20,11 +20,17 @@ public class Controller implements ControllerInterface {
     private Pool pool;
     private List<Student> students;
     private SatisfactionCalculator calc;
-    
+    private String[] subs;
     public Controller(){
         pool = new Pool();
+        subs = new String[]{"C#", "Python", "Android", "SW Design", "Games", "Databases", "Test", "Arduino"};
+        for(String s:subs){
+            Subject subject = new Subject(s,"","");
+            pool.addToUnassigned(subject);
+        }
         calc = new SatisfactionCalculator();
         this.students = new ArrayList();
+        loadStudents();
     }
     
     @Override
@@ -66,15 +72,16 @@ public class Controller implements ControllerInterface {
     public void addToUnassigned(Subject fag) {
         pool.addToUnassigned(fag);
     }
-
+    
     @Override
     public Subject removeFromUnassigned(Subject fag) {
         return pool.removeFromUnassignedPool(fag);
     }
-
+    
     @Override
     public List<Student> calculate() {
-        return calc.calculate(students, pool.getPoolA(), pool.getPoolB());
+       
+        return  calc.calculate(students, pool.getPoolA(), pool.getPoolB()); 
     }
     
     @Override

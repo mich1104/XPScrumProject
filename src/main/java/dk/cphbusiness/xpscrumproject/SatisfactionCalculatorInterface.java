@@ -15,5 +15,6 @@ import java.util.List;
 public interface SatisfactionCalculatorInterface {
     
     List<Student> calculate(List<Student> slist,List<Subject> poolA,List<Subject> poolB);
+    List<Student> sortList(List<Student> slist);
     
 }

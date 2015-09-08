@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
 public class Gui extends javax.swing.JFrame {
 
     
-    ControllerInterface control;
+    Controller control;
     DefaultListModel poolA = new DefaultListModel();
     DefaultListModel poolB = new DefaultListModel();
     DefaultListModel poolUn = new DefaultListModel();
@@ -30,6 +30,10 @@ public class Gui extends javax.swing.JFrame {
         control = new Controller();
         initComponents();
         cellRender = new MyNewCellRenderer();
+        poolA = new DefaultListModel();
+        poolB = new DefaultListModel();
+        poolUn = new DefaultListModel();
+        studentModel = (DefaultTableModel) jTableResult.getModel();
         setjList();
     }
     
@@ -45,10 +49,9 @@ public class Gui extends javax.swing.JFrame {
     }
     
     public void getCalculatedStudents(){
-        studentModel = (DefaultTableModel) jTableResult.getModel();
         List<Student> student = control.calculate();
+        studentModel.setRowCount(0);
         studentModel.setRowCount(student.size());
-        jTableResult.setAutoCreateRowSorter(true);
         for (int i = 0; i < student.size(); i++) {
             jTableResult.setValueAt(student.get(i).getName(), i, 0);
             jTableResult.setValueAt(student.get(i).getFirstPriority()[0], i, 1);
@@ -60,6 +63,7 @@ public class Gui extends javax.swing.JFrame {
             jTableResult.setValueAt(grade, i, 5);            
         }
         colorTableRow();
+        
     }
     
     public void setjList(){
@@ -67,7 +71,6 @@ public class Gui extends javax.swing.JFrame {
         poolB.removeAllElements();
         poolUn.removeAllElements();
         List<Subject> poolAList = control.getPoolAList();
-        System.out.println("pool A = "+control.getPoolAList().size());
         for (int i = 0; i < poolAList.size(); i++) {
             poolA.addElement(poolAList.get(i));
         }
@@ -327,8 +330,7 @@ public class Gui extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonLTRightActionPerformed
 
     private void jButtonRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoveActionPerformed
-        System.out.println(jListPoolA.getSelectedIndex());
-        System.out.println(jListPoolB.getSelectedIndex());
+
         if(jListPoolA.getSelectedIndex() != -1){
         List aList = jListPoolA.getSelectedValuesList();
             for (int i = 0; i < aList.size(); i++) {
