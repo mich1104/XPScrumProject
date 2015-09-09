@@ -36,6 +36,7 @@ public class Gui extends javax.swing.JFrame {
         poolUn = new DefaultListModel();
         studentModel = (DefaultTableModel) jTableResult.getModel();
         setjList();
+        getCalculatedStudents();
     }
     
     
