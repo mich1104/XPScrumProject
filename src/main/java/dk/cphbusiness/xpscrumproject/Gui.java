@@ -20,6 +20,7 @@ public class Gui extends javax.swing.JFrame {
     Controller control;
     DefaultListModel poolA = new DefaultListModel();
     DefaultListModel poolB = new DefaultListModel();
+    DefaultListModel poolC = new DefaultListModel();
     DefaultListModel poolUn = new DefaultListModel();
     DefaultTableModel studentModel;
     MyNewCellRenderer cellRender;
@@ -33,6 +34,7 @@ public class Gui extends javax.swing.JFrame {
         cellRender = new MyNewCellRenderer();
         poolA = new DefaultListModel();
         poolB = new DefaultListModel();
+        poolC = new DefaultListModel();
         poolUn = new DefaultListModel();
         studentModel = (DefaultTableModel) jTableResult.getModel();
         setjList();
@@ -58,11 +60,13 @@ public class Gui extends javax.swing.JFrame {
             jTableResult.setValueAt(student.get(i).getName(), i, 0);
             jTableResult.setValueAt(student.get(i).getFirstPriority()[0], i, 1);
             jTableResult.setValueAt(student.get(i).getFirstPriority()[1], i, 2);
-            jTableResult.setValueAt(student.get(i).getSecondPriority()[0], i, 3);
-            jTableResult.setValueAt(student.get(i).getSecondPriority()[1], i, 4);
+            jTableResult.setValueAt(student.get(i).getFirstPriority()[2], i, 3);
+            jTableResult.setValueAt(student.get(i).getSecondPriority()[0], i, 4);
+            jTableResult.setValueAt(student.get(i).getSecondPriority()[1], i, 5);
+            jTableResult.setValueAt(student.get(i).getSecondPriority()[2], i, 6);
             int[] grades = student.get(i).getGrades();
-            String grade = grades[0]+"."+grades[1];
-            jTableResult.setValueAt(grade, i, 5);            
+            String grade = grades[0]+"."+grades[1]+"."+grades[2];
+            jTableResult.setValueAt(grade, i, 7);            
         }
         colorTableRow();
         
@@ -71,6 +75,7 @@ public class Gui extends javax.swing.JFrame {
     public void setjList(){
         poolA.removeAllElements();
         poolB.removeAllElements();
+        poolC.removeAllElements();
         poolUn.removeAllElements();
         List<Subject> poolAList = control.getPoolAList();
         for (int i = 0; i < poolAList.size(); i++) {
@@ -80,12 +85,17 @@ public class Gui extends javax.swing.JFrame {
         for (int i = 0; i < poolBList.size(); i++) {
             poolB.addElement(poolBList.get(i));
         }
+        List<Subject> poolCList = control.getPoolCList();
+        for (int i = 0; i < poolCList.size(); i++) {
+            poolC.addElement(poolCList.get(i));
+        }
         List<Subject> poolUnList = control.getUnassignedList();
         for (int i = 0; i < poolUnList.size(); i++) {
             poolUn.addElement(poolUnList.get(i));
         }
         jListPoolA.setModel(poolA);
         jListPoolB.setModel(poolB);
+        jListPoolC.setModel(poolC);
         jListUn.setModel(poolUn);
     }
 
@@ -107,16 +117,22 @@ public class Gui extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         jTableResult = new javax.swing.JTable();
         jButtonSubmit = new javax.swing.JButton();
-        jButtonRTLeft = new javax.swing.JButton();
-        jButtonLTRight = new javax.swing.JButton();
         jButtonRemove = new javax.swing.JButton();
         jButtonToPoolA = new javax.swing.JButton();
         jButtonToPoolB = new javax.swing.JButton();
         jLabelPoolA = new javax.swing.JLabel();
         jLabelPoolB = new javax.swing.JLabel();
         JListUn = new javax.swing.JLabel();
+        jLabelPoolC = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jListPoolC = new javax.swing.JList();
+        jButtonToPoolC = new javax.swing.JButton();
+        jButtonClear = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(800, 600));
+        setPreferredSize(new java.awt.Dimension(800, 600));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jListPoolA.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -125,12 +141,16 @@ public class Gui extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jListPoolA);
 
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 120, 176));
+
         jListPoolB.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
         jScrollPane2.setViewportView(jListPoolB);
+
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, 120, 176));
 
         jListUn.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -139,18 +159,22 @@ public class Gui extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(jListUn);
 
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 50, 161, 176));
+
         jTableResult.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Navn", "First Prio 1", "First Prio 2", "Second Prio 1", "Second Prio 2", "Tilfredshed"
+                "Navn", "First Prio 1", "First Prio 2", "First Prio 3l", "Second Prio 1", "Second Prio 2", "Second Prio 3", "Tilfredshed"
             }
         ));
         jScrollPane4.setViewportView(jTableResult);
+
+        getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 728, 258));
 
         jButtonSubmit.setText("Submit pools");
         jButtonSubmit.addActionListener(new java.awt.event.ActionListener() {
@@ -158,20 +182,7 @@ public class Gui extends javax.swing.JFrame {
                 jButtonSubmitActionPerformed(evt);
             }
         });
-
-        jButtonRTLeft.setText("<--");
-        jButtonRTLeft.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRTLeftActionPerformed(evt);
-            }
-        });
-
-        jButtonLTRight.setText("-->");
-        jButtonLTRight.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonLTRightActionPerformed(evt);
-            }
-        });
+        getContentPane().add(jButtonSubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 240, -1, -1));
 
         jButtonRemove.setText("Remove");
         jButtonRemove.setMaximumSize(new java.awt.Dimension(80, 25));
@@ -181,6 +192,7 @@ public class Gui extends javax.swing.JFrame {
                 jButtonRemoveActionPerformed(evt);
             }
         });
+        getContentPane().add(jButtonRemove, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 240, 120, -1));
 
         jButtonToPoolA.setText("<-- POOL A");
         jButtonToPoolA.addActionListener(new java.awt.event.ActionListener() {
@@ -188,6 +200,7 @@ public class Gui extends javax.swing.JFrame {
                 jButtonToPoolAActionPerformed(evt);
             }
         });
+        getContentPane().add(jButtonToPoolA, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 100, 107, -1));
 
         jButtonToPoolB.setText("<-- POOL B");
         jButtonToPoolB.addActionListener(new java.awt.event.ActionListener() {
@@ -195,86 +208,50 @@ public class Gui extends javax.swing.JFrame {
                 jButtonToPoolBActionPerformed(evt);
             }
         });
+        getContentPane().add(jButtonToPoolB, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 140, 107, -1));
 
         jLabelPoolA.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelPoolA.setText("Pool A");
+        getContentPane().add(jLabelPoolA, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 120, -1));
 
         jLabelPoolB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelPoolB.setText("Pool B");
+        getContentPane().add(jLabelPoolB, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 120, -1));
 
         JListUn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JListUn.setText("Unassigned");
+        getContentPane().add(JListUn, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 30, 161, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 569, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonSubmit)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelPoolA, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jButtonLTRight, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jButtonRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jButtonRTLeft, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabelPoolB, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonToPoolA)
-                            .addComponent(jButtonToPoolB))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JListUn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(19, Short.MAX_VALUE))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(40, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelPoolA, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabelPoolB, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(JListUn, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGap(25, 25, 25)
-                            .addComponent(jButtonToPoolA)
-                            .addGap(30, 30, 30)
-                            .addComponent(jButtonToPoolB))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1)
-                            .addComponent(jScrollPane2)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(jButtonRTLeft)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonLTRight)
-                        .addGap(27, 27, 27)
-                        .addComponent(jButtonRemove, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(69, 69, 69)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonSubmit))
-                .addGap(41, 41, 41))
-        );
+        jLabelPoolC.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelPoolC.setText("Pool C");
+        getContentPane().add(jLabelPoolC, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, 120, -1));
+
+        jListPoolC.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane5.setViewportView(jListPoolC);
+
+        getContentPane().add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, 120, 176));
+
+        jButtonToPoolC.setText("<-- POOL C");
+        jButtonToPoolC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonToPoolCActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonToPoolC, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 180, 107, -1));
+
+        jButtonClear.setText("Clear Pools");
+        jButtonClear.setMaximumSize(new java.awt.Dimension(80, 25));
+        jButtonClear.setMinimumSize(new java.awt.Dimension(80, 25));
+        jButtonClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonClearActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 50, 107, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -307,36 +284,7 @@ public class Gui extends javax.swing.JFrame {
         getCalculatedStudents();
     }//GEN-LAST:event_jButtonToPoolBActionPerformed
 
-    private void jButtonRTLeftActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRTLeftActionPerformed
-        List bList = jListPoolB.getSelectedValuesList();
-        if(bList.isEmpty()){
-        }else{
-            for (int i = 0; i < bList.size(); i++) {
-                Subject subject = control.removeFromPoolB((Subject)bList.get(i));
-                control.addtoPoolA(subject);
-                
-            }
-        }
-        setjList();
-        getCalculatedStudents();
-    }//GEN-LAST:event_jButtonRTLeftActionPerformed
-
-    private void jButtonLTRightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLTRightActionPerformed
-        List aList = jListPoolA.getSelectedValuesList();
-        if(aList.isEmpty()){
-        }else{
-            for (int i = 0; i < aList.size(); i++) {
-                Subject subject = control.removeFromPoolA((Subject)aList.get(i));
-                control.addtoPoolB(subject);
-                
-            }
-        }
-        setjList();
-        getCalculatedStudents();
-    }//GEN-LAST:event_jButtonLTRightActionPerformed
-
     private void jButtonRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoveActionPerformed
-
         if(jListPoolA.getSelectedIndex() != -1){
         List aList = jListPoolA.getSelectedValuesList();
             for (int i = 0; i < aList.size(); i++) {
@@ -351,13 +299,40 @@ public class Gui extends javax.swing.JFrame {
                 control.addToUnassigned(subject);
             }
         }
+        if(jListPoolC.getSelectedIndex() != -1){
+        List bList = jListPoolC.getSelectedValuesList();
+            for (int i = 0; i < bList.size(); i++) {
+                Subject subject = control.removeFromPoolC((Subject)bList.get(i));
+                control.addToUnassigned(subject);
+            }
+        }
        setjList();
        getCalculatedStudents();
     }//GEN-LAST:event_jButtonRemoveActionPerformed
 
     private void jButtonSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSubmitActionPerformed
-        control.submitPools();
+        control.submitPools(false);
     }//GEN-LAST:event_jButtonSubmitActionPerformed
+
+    private void jButtonToPoolCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonToPoolCActionPerformed
+        List unList = jListUn.getSelectedValuesList();
+        if(unList.isEmpty()){
+        }else{
+            for (int i = 0; i < unList.size(); i++) {
+                Subject subject = control.removeFromUnassigned((Subject)unList.get(i));
+                control.addtoPoolC(subject);
+                
+            }
+        }
+        setjList();
+        getCalculatedStudents();
+    }//GEN-LAST:event_jButtonToPoolCActionPerformed
+
+    private void jButtonClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearActionPerformed
+        control.resetPools();
+        setjList();
+        getCalculatedStudents();
+    }//GEN-LAST:event_jButtonClearActionPerformed
 
     /**
      * @param args the command line arguments
@@ -396,21 +371,24 @@ public class Gui extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel JListUn;
-    private javax.swing.JButton jButtonLTRight;
-    private javax.swing.JButton jButtonRTLeft;
+    private javax.swing.JButton jButtonClear;
     private javax.swing.JButton jButtonRemove;
     private javax.swing.JButton jButtonSubmit;
     private javax.swing.JButton jButtonToPoolA;
     private javax.swing.JButton jButtonToPoolB;
+    private javax.swing.JButton jButtonToPoolC;
     private javax.swing.JLabel jLabelPoolA;
     private javax.swing.JLabel jLabelPoolB;
+    private javax.swing.JLabel jLabelPoolC;
     private javax.swing.JList jListPoolA;
     private javax.swing.JList jListPoolB;
+    private javax.swing.JList jListPoolC;
     private javax.swing.JList jListUn;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTable jTableResult;
     // End of variables declaration//GEN-END:variables
 }
