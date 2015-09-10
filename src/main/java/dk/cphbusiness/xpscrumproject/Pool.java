@@ -17,11 +17,13 @@ public class Pool implements PoolInterface {
     private List<Subject> unassignedPool;
     private List<Subject> poolA;
     private List<Subject> poolB;
+    private List<Subject> poolC;
 
     public Pool() {
         this.unassignedPool = new ArrayList();
         this.poolA = new ArrayList();
         this.poolB = new ArrayList();
+        this.poolC = new ArrayList();
     }
 
     @Override
@@ -88,6 +90,26 @@ public class Pool implements PoolInterface {
     @Override
     public void addToUnassigned(Subject fag) {
         unassignedPool.add(fag);
+    }
+
+    @Override
+    public void addToPoolC(Subject fag) {
+        poolC.add(fag);
+    }
+
+    @Override
+    public List<Subject> getPoolC() {
+        return poolC;
+    }
+
+    @Override
+    public Subject removeFromPoolC(Subject fag) {
+        if (poolC.contains(fag)) {
+            poolC.remove(fag);
+            return fag;
+        } else {
+            return null;
+        }
     }
 
 }

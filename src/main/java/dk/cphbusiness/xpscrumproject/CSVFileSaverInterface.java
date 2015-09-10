@@ -13,6 +13,6 @@ import java.util.List;
  */
 public interface CSVFileSaverInterface {
     
-    boolean saveFile(boolean manualSave, List<Subject> unaPool, List<Subject> poolA, List<Subject> poolB);
+    boolean saveFile(boolean manualSave, List<Subject> unaPool, List<Subject> poolA, List<Subject> poolB,List<Subject> poolC);
     
 }

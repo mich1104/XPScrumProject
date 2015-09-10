@@ -13,13 +13,14 @@ public interface StudentInterface {
     
     void setName(String name);
     String getName();
-    void setFirstPriority(Subject fag1, Subject fag2);
-    void setSecondPriority(Subject fag3, Subject fag4);
+    void setFirstPriority(Subject fag1, Subject fag2,Subject fag3);
+    void setSecondPriority(Subject fag1, Subject fag2, Subject fag3);
     Subject[] getFirstPriority();
     Subject[] getSecondPriority();
-    void setGrades(int first,int second);
+    void setGrades(int first,int second,int third);
     int[] getGrades();
     void setFirstGrade(int grade);
     void setSecondGrade(int grade);
+    void setThirdGrade(int grade);
     
 }

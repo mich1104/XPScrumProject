@@ -10,13 +10,9 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import static org.hamcrest.CoreMatchers.is;
-import org.jmock.Expectations;
 import org.junit.Test;
-import org.jmock.Mockery;
-import org.jmock.integration.junit4.JUnitRuleMockery;
 import static org.junit.Assert.assertThat;
-import org.jmock.lib.legacy.ClassImposteriser;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 /**
  *
@@ -49,7 +45,7 @@ public class ControllerTest {
     @Test
     public void testGetUnassignedList() {
 
-           Subject android = new Subject("android", "test", "test");
+        Subject android = new Subject("android", "test", "test");
         Subject ai = new Subject("ai", "test", "test");
         pool.addToUnassigned(ai);
         pool.addToUnassigned(android);
@@ -189,27 +185,37 @@ public class ControllerTest {
         String fileName = "testFileChooserThroughContoller.csv";
         String path = System.getProperty("user.dir") + System.getProperty("path.seperator") + fileName;
         createTestFile(path);
-        
+
         assertThat(control.getStudents().size(), is(0));
         control.loadStudents(fileName);
         assertThat(control.getStudents().size(), is(2));
     }
-    
+
     @Test
     public void testLoadStudentsCathingIO() throws Exception {
-        
+
         String fileName = "testFileChooserThroughContoller.txt";
-        
+
         control.loadStudents(fileName);
         assertThat(control.getStudents().size(), is(0));
     }
-    
-    public void createTestFile(String path) throws IOException{
-        String toFile = "name, prio1, prio1.1, prio2, prio2.1;name2, prio1, prio1.1, prio2, prio2.1";
+
+    public void createTestFile(String path) throws IOException {
+        String toFile = "name, prio1, prio1.1,prio1.1.1, prio2, prio2.1,prio2.1.1;name2, prio1, prio1.1,prio1.1.1, prio2, prio2.1,prio2.1.1";
         PrintWriter pw = new PrintWriter(path);
         pw.print(toFile);
         pw.flush();
         pw.close();
     }
 
+    @Test
+    public void testCalculate() {
+        assertTrue(control.calculate().size() == 0);
+    }
+
+    @Test
+    public void testSubmitPools(){
+        Pool p = new Pool();
+        assertTrue(control.submitPools(false));
+    }
 }
