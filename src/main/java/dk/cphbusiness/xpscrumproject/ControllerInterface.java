@@ -29,4 +29,5 @@ public interface ControllerInterface {
     List<Student> calculate();
     void loadStudents(String fileName);
     List<Student> getStudents();
+    boolean resetPools();
 }

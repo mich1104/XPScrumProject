@@ -118,7 +118,7 @@ public class ControllerTest {
 
         assertThat(listOfSubjects.size(), is(2));
     }
-    
+
     @Test
     public void testGetPoolCList() {
         control.setPool(pool);
@@ -181,7 +181,7 @@ public class ControllerTest {
 
         assertThat(returned, is(android));
     }
-    
+
     @Test
     public void testAddToAndRemoveFromUnassigned() {
         control.setPool(pool);
@@ -236,8 +236,13 @@ public class ControllerTest {
     }
 
     @Test
-    public void testSubmitPools(){
+    public void testSubmitPools() {
         Pool p = new Pool();
         assertTrue(control.submitPools(false));
+    }
+
+    @Test
+    public void testReset() {
+        assertTrue(control.resetPools());
     }
 }

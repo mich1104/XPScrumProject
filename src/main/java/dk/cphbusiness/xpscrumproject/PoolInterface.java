@@ -30,4 +30,5 @@ public interface PoolInterface {
     Subject removeFromPoolC(Subject fag);
     void addToUnassigned(Subject fag);
     Subject removeFromUnassignedPool(Subject fag);
+    boolean reset();
 }

@@ -129,4 +129,11 @@ public class Controller implements ControllerInterface {
         return pool.removeFromPoolC(fag);
     }
 
+    @Override
+    public boolean resetPools() {
+        return pool.reset();
+    }
+    
+   
+
 }
