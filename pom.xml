@@ -74,7 +74,8 @@
                     <exclude>dk/cphbusiness/xpscrumproject/MyNewCellRenderer.*</exclude>
                     <exclude>dk/cphbusiness/xpscrumproject/Gui*</exclude>
                     <exclude>dk/cphbusiness/xpscrumproject/databasesetup/*</exclude>
-                    <exclude>dk/cphbusiness/xpscrumproject/*_*</exclude>
+                    <exclude>dk/cphbusiness/xpscrumproject/pu/*_*</exclude>
+                    <exclude>dk/cphbusiness/xpscrumproject/test/*_*</exclude>
                 </excludes>
             </configuration>
             <executions>
