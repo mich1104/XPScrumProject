@@ -82,6 +82,17 @@ public class PoolTest {
         assertTrue(list.size() == 0);
     }
     
+        @Test
+    public void addGetRemovePoolC() {
+        Subject fag = new Subject("test","test","test");
+        pool.addToPoolC(fag);
+        List<Subject> list = pool.getPoolC();
+        assertTrue(list.get(0).equals(fag));
+        pool.removeFromPoolC(fag);
+        list = pool.getPoolC();
+        assertTrue(list.size() == 0);
+    }
+    
     @Test
     public void returnsNull(){
         pool = new Pool();
@@ -89,10 +100,13 @@ public class PoolTest {
         Subject resultUnassigned = pool.removeFromUnassignedPool(fag);
         Subject resultA = pool.removeFromPoolA(fag);
         Subject resultB = pool.removeFromPoolB(fag);
+        Subject resultC = pool.removeFromPoolC(fag);
+        
         
         assertNull(resultUnassigned);
         assertNull(resultA);
         assertNull(resultB);
+        assertNull(resultC);
     }
     
     @Test

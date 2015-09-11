@@ -82,7 +82,7 @@ public class Controller implements ControllerInterface {
     @Override
     public List<Student> calculate() {
        
-        return  calc.calculate(students, pool.getPoolA(), pool.getPoolB()); 
+        return  calc.calculate(students, pool.getPoolA(), pool.getPoolB(),pool.getPoolC()); 
     }
     
     @Override
@@ -102,8 +102,8 @@ public class Controller implements ControllerInterface {
     }
     
     @Override
-    public Boolean submitPools() {
-        return csvSaver.saveFile(true, pool.getUnassignedPool(), pool.getPoolA(), pool.getPoolB());
+    public Boolean submitPools(boolean manual) {
+        return csvSaver.saveFile(manual, pool.getUnassignedPool(), pool.getPoolA(), pool.getPoolB(),pool.getPoolC());
     }
 
     public void setPool(Pool pool){

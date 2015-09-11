@@ -70,25 +70,28 @@ public class CSVFileSaverTest {
     public void saveFileAuto() {
         ArrayList<Subject> poolA = new ArrayList();
         ArrayList<Subject> poolB = new ArrayList();
+        ArrayList<Subject> poolC = new ArrayList();
+
         ArrayList<Subject> unaPool = new ArrayList();
 
         Subject subject1 = new Subject("Teori", "test", "test");
         Subject subject2 = new Subject("Praktik", "test", "test");
         Subject subject3 = new Subject("Fri", "test", "test");
         Subject subject4 = new Subject("Lol", "test", "test");
+        Subject subject5 = new Subject("Yolo", "test", "test");
+        Subject subject6 = new Subject("Tintin", "test", "test");
         Subject notfound1 = new Subject("Kagebagning", "test", "test");
 
         poolA.add(subject1);
-
         poolA.add(subject2);
-
         poolB.add(subject3);
-
         poolB.add(subject4);
+        poolC.add(subject5);
+        poolC.add(subject6);
 
         unaPool.add(notfound1);
 
-        assertTrue(save.saveFile(false, unaPool, poolA, poolB));
+        assertTrue(save.saveFile(false, unaPool, poolA, poolB,poolC));
     }
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:

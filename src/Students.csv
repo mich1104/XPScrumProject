@@ -1,4 +1,4 @@
-Bjarke Carlsen,C#,SW Design,Android,Python;
-Martin Olgenkjær,Arduino,SW Design,Databases,Test;
-Henrik Stavnem,Android,Games,C#,Databases;
-Nicklas Thomsen,Python,Arduino,SW Design,Test
+Bjarke Carlsen,C#,SW Design,Games,Android,Python,Test;
+Martin Olgenkjær,Arduino,SW Design,Android,Databaser,Test,Python;
+Henrik Stavnem,Android,Games,Python,C#,Databases,SW Design;
+Nicklas Thomsen,Python,Arduino,C#,SW Design,Databaser,Games

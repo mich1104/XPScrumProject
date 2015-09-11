@@ -5,6 +5,8 @@
  */
 package dk.cphbusiness.xpscrumproject;
 
+import java.util.List;
+
 /**
  *
  * @author Muggi
@@ -13,13 +15,14 @@ public interface StudentInterface {
     
     void setName(String name);
     String getName();
-    void setFirstPriority(Subject fag1, Subject fag2);
-    void setSecondPriority(Subject fag3, Subject fag4);
-    Subject[] getFirstPriority();
-    Subject[] getSecondPriority();
-    void setGrades(int first,int second);
+    void setFirstPriorities(Subject fag1, Subject fag2,Subject fag3);
+    void setSecondPriorities(Subject fag1, Subject fag2, Subject fag3);
+    List<Subject> getFirstPriority();
+    List<Subject> getSecondPriority();
+    void setGrades(int first,int second,int third);
     int[] getGrades();
     void setFirstGrade(int grade);
     void setSecondGrade(int grade);
+    void setThirdGrade(int grade);
     
 }

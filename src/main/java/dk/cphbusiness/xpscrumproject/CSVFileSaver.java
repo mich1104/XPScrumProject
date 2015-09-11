@@ -30,12 +30,13 @@ public class CSVFileSaver implements CSVFileSaverInterface {
     }
 
     @Override
-    public boolean saveFile(boolean manualSave, List<Subject> unaPool, List<Subject> poolA, List<Subject> poolB) {
+    public boolean saveFile(boolean manualSave, List<Subject> unaPool, List<Subject> poolA, List<Subject> poolB, List<Subject> poolC) {
         StringBuilder strb = new StringBuilder();
 
         String unaPoolStr = "";
         String poolAStr = "";
         String poolBStr = "";
+        String poolCStr = "";
         for (Subject s : unaPool) {
             strb.append(s.getTitle());
             strb.append(detailsSeperator);
@@ -63,6 +64,16 @@ public class CSVFileSaver implements CSVFileSaverInterface {
             strb.append(s.getDescription());
             strb.append(subjectSeperator);
         }
+        strb.append(listSeperator);
+        for (Subject s : poolC) {
+            strb.append(s.getTitle());
+            strb.append(detailsSeperator);
+            strb.append(s.getTeacher());
+            strb.append(detailsSeperator);
+            strb.append(s.getDescription());
+            strb.append(subjectSeperator);
+        }
+
         String result = strb.toString();
         System.out.println(result);
 
@@ -93,20 +104,18 @@ public class CSVFileSaver implements CSVFileSaverInterface {
                     Logger.getLogger(CSVFileSaver.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-        }else{
+        } else {
             try {
 
-                    PrintWriter out = new PrintWriter("pools.csv");
-                    out.println(result);
-                    success = true;
-                    out.close();
+                PrintWriter out = new PrintWriter("pools.csv");
+                out.println(result);
+                success = true;
+                out.close();
 
-                } catch (FileNotFoundException ex) {
-                    Logger.getLogger(CSVFileSaver.class.getName()).log(Level.SEVERE, null, ex);
-                }
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(CSVFileSaver.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        
-        
 
         return success;
     }

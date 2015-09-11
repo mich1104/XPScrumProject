@@ -22,8 +22,12 @@ public interface PoolInterface {
     void addToPoolB(Subject fag);
     List<Subject> getPoolB();
     
+    void addToPoolC(Subject fag);
+    List<Subject> getPoolC();
+    
     Subject removeFromPoolA(Subject fag);
     Subject removeFromPoolB(Subject fag);
+    Subject removeFromPoolC(Subject fag);
     void addToUnassigned(Subject fag);
     Subject removeFromUnassignedPool(Subject fag);
 }

@@ -55,12 +55,15 @@ public class CSVReader implements CSVReaderInterface{
            String name = attributes[0];
            String firstPrioOne = attributes[1];
            String firstPrioTwo = attributes[2];
-           String secondPrioOne = attributes[3];
-           String secondPrioTwo = attributes[4];
+           String firstPrioThird = attributes[3];
+           
+           String secondPrioOne = attributes[4];
+           String secondPrioTwo = attributes[5];
+           String secondPrioThird = attributes[6];
            
            Student student = new Student(name);
-           student.setFirstPriority(new Subject(firstPrioOne, null, null), new Subject(firstPrioTwo, null, null));
-           student.setSecondPriority(new Subject(secondPrioOne, null, null), new Subject(secondPrioTwo, null, null));
+           student.setFirstPriorities(new Subject(firstPrioOne, null, null), new Subject(firstPrioTwo, null, null),new Subject(firstPrioThird,null,null));
+           student.setSecondPriorities(new Subject(secondPrioOne, null, null), new Subject(secondPrioTwo, null, null),new Subject(secondPrioThird,null,null));
            
            arrayForReturn.add(student);
        }

@@ -57,7 +57,7 @@ public class CSVFileChooserTest {
     }
 
     public void createTestFile(String path) throws IOException{
-        String toFile = "name, prio1, prio1.1, prio2, prio2.1;name2, prio1, prio1.1, prio2, prio2.1";
+        String toFile = "name, prio1, prio1.1,prio1.1.1, prio2, prio2.1,prio2.2.2;name2, prio1, prio1.1,prio1.1.1, prio2, prio2.1,prio2.2.2";
         PrintWriter pw = new PrintWriter(path);
         pw.print(toFile);
         pw.flush();
