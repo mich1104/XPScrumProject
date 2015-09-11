@@ -171,4 +171,19 @@ public class Pool implements Serializable, PoolInterface {
         return "dk.cphbusiness.xpscrumproject.PoolEntity[ id=" + id + " ]";
     }
     
+    @Override
+    public boolean reset() {
+        List<Subject> reset = new ArrayList();
+        reset.addAll(unassignedPool);
+        reset.addAll(poolA);
+        reset.addAll(poolB);
+        reset.addAll(poolC);
+        poolA = new ArrayList();
+        poolB = new ArrayList();
+        poolC = new ArrayList();
+        unassignedPool = reset;
+        return true;
+        
+    }
+
 }

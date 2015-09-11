@@ -119,4 +119,19 @@ public class PoolTest {
         list = pool.getUnassignedPool();
         assertTrue(list.size() == 0);
     }
+    
+    @Test
+    public void reset(){
+        Pool p = new Pool();
+        Subject one = new Subject("test","test","test");
+        Subject two = new Subject("test","test","test");
+        Subject three = new Subject("test","test","test");
+        Subject four = new Subject("test","test","test");
+        p.addToPoolA(one);
+        p.addToPoolB(two);
+        p.addToPoolC(three);
+        p.addToUnassigned(four);
+        p.reset();
+        assertTrue(p.getUnassignedPool().size()==4);
+    }
 }

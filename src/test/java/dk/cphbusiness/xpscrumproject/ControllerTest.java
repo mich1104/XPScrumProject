@@ -120,6 +120,18 @@ public class ControllerTest {
     }
 
     @Test
+    public void testGetPoolCList() {
+        control.setPool(pool);
+        Subject android = new Subject("android", "test", "test");
+        Subject ai = new Subject("ai", "test", "test");
+        control.addtoPoolC(ai);
+        control.addtoPoolC(android);
+        List<Subject> listOfSubjects = control.getPoolCList();
+
+        assertThat(listOfSubjects.size(), is(2));
+    }
+
+    @Test
     public void testAddToAndRemoveFromPoolA() {
         control.setPool(pool);
 
@@ -156,6 +168,16 @@ public class ControllerTest {
         Subject android = new Subject("android", "test", "test");
         control.addtoPoolB(android);
         Subject returned = control.removeFromPoolB(android);
+
+        assertThat(returned, is(android));
+    }
+
+    @Test
+    public void testAddToAndRemoveFromPoolC() {
+        control.setPool(pool);
+        Subject android = new Subject("android", "test", "test");
+        control.addtoPoolC(android);
+        Subject returned = control.removeFromPoolC(android);
 
         assertThat(returned, is(android));
     }
@@ -214,8 +236,13 @@ public class ControllerTest {
     }
 
     @Test
-    public void testSubmitPools(){
+    public void testSubmitPools() {
         Pool p = new Pool();
         assertTrue(control.submitPools(false));
+    }
+
+    @Test
+    public void testReset() {
+        assertTrue(control.resetPools());
     }
 }

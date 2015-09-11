@@ -16,14 +16,18 @@ public interface ControllerInterface {
     List<Subject> getUnassignedList();
     List<Subject> getPoolAList();
     List<Subject> getPoolBList();
+    List<Subject> getPoolCList();
     Boolean submitPools(boolean manual);
     void addtoPoolA(Subject fag);
     Subject removeFromPoolA(Subject fag);
     void addtoPoolB(Subject fag);
     Subject removeFromPoolB(Subject fag);
+    void addtoPoolC(Subject fag);
+    Subject removeFromPoolC(Subject fag);
     void addToUnassigned(Subject fag);
     Subject removeFromUnassigned(Subject fag);
     List<Student> calculate();
     void loadStudents(String fileName);
     List<Student> getStudents();
+    boolean resetPools();
 }

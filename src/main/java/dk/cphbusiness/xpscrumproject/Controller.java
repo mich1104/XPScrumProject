@@ -114,4 +114,26 @@ public class Controller implements ControllerInterface {
         return pool;
     }
 
+    @Override
+    public List<Subject> getPoolCList() {
+        return pool.getPoolC();
+    }
+
+    @Override
+    public void addtoPoolC(Subject fag) {
+        pool.addToPoolC(fag);
+    }
+
+    @Override
+    public Subject removeFromPoolC(Subject fag) {
+        return pool.removeFromPoolC(fag);
+    }
+
+    @Override
+    public boolean resetPools() {
+        return pool.reset();
+    }
+    
+   
+
 }
