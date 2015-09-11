@@ -58,12 +58,12 @@ public class Gui extends javax.swing.JFrame {
         studentModel.setRowCount(student.size());
         for (int i = 0; i < student.size(); i++) {
             jTableResult.setValueAt(student.get(i).getName(), i, 0);
-            jTableResult.setValueAt(student.get(i).getFirstPriority()[0], i, 1);
-            jTableResult.setValueAt(student.get(i).getFirstPriority()[1], i, 2);
-            jTableResult.setValueAt(student.get(i).getFirstPriority()[2], i, 3);
-            jTableResult.setValueAt(student.get(i).getSecondPriority()[0], i, 4);
-            jTableResult.setValueAt(student.get(i).getSecondPriority()[1], i, 5);
-            jTableResult.setValueAt(student.get(i).getSecondPriority()[2], i, 6);
+            jTableResult.setValueAt(student.get(i).getFirstPriority().get(0), i, 1);
+            jTableResult.setValueAt(student.get(i).getFirstPriority().get(1), i, 2);
+            jTableResult.setValueAt(student.get(i).getFirstPriority().get(2), i, 3);
+            jTableResult.setValueAt(student.get(i).getSecondPriority().get(0), i, 4);
+            jTableResult.setValueAt(student.get(i).getSecondPriority().get(1), i, 5);
+            jTableResult.setValueAt(student.get(i).getSecondPriority().get(2), i, 6);
             int[] grades = student.get(i).getGrades();
             String grade = grades[0]+"."+grades[1]+"."+grades[2];
             jTableResult.setValueAt(grade, i, 7);            
