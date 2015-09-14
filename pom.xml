@@ -5,6 +5,26 @@
     <artifactId>XPScrumProject</artifactId>
     <version>0.10</version>
     <packaging>jar</packaging>
+    
+    <repositories>
+        <repository>
+            <id>dk.cphbusiness</id>
+            <name>Cphbusiness</name>
+            <url>http://datdb.cphbusiness.dk:8080/repository</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>fail</checksumPolicy>
+            </releases>
+            <layout>default</layout>		
+        </repository>
+        <repository>
+            <id>unknown-jars-temp-repo</id>
+            <name>A temporary repository created by NetBeans for libraries and jars it could not identify. Please replace the dependencies in this repository with correct ones and delete this repository.</name>
+            <url>file:${project.basedir}/lib</url>
+        </repository>
+    </repositories>
+    
     <dependencies>
         <dependency>
             <groupId>org.hamcrest</groupId>
@@ -27,7 +47,7 @@
         <dependency>
             <groupId>com.oracle</groupId>
             <artifactId>ojdbc7</artifactId>
-            <version>11.2.0</version>
+            <version>12.1.0.2</version>
         </dependency>
         <dependency>
             <groupId>org.jmock</groupId>
@@ -47,12 +67,6 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>ojdbc</groupId>
-            <artifactId>ojdbc</artifactId>
-            <version>14</version>
-            <type>pom</type>
-        </dependency>
-        <dependency>
             <groupId>unknown.binary</groupId>
             <artifactId>AbsoluteLayout</artifactId>
             <version>SNAPSHOT</version>
@@ -66,34 +80,27 @@
     <build>
         <plugins>
             <plugin>
-            <groupId>org.jacoco</groupId>
-            <artifactId>jacoco-maven-plugin</artifactId>
-            <version>0.7.5.201505241946</version>
-            <configuration>
-                <excludes>
-                    <exclude>dk/cphbusiness/xpscrumproject/MyNewCellRenderer.*</exclude>
-                    <exclude>dk/cphbusiness/xpscrumproject/Gui*</exclude>
-                    <exclude>dk/cphbusiness/xpscrumproject/databasesetup/*</exclude>
-                    <exclude>dk/cphbusiness/xpscrumproject/pu/*_*</exclude>
-                    <exclude>dk/cphbusiness/xpscrumproject/test/*_*</exclude>
-                </excludes>
-            </configuration>
-            <executions>
-                <execution>
-                <goals>
-                    <goal>prepare-agent</goal>
-                    <goal>report</goal>
-                </goals>
-                </execution>
-            </executions>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.7.5.201505241946</version>
+                <configuration>
+                    <excludes>
+                        <exclude>dk/cphbusiness/xpscrumproject/MyNewCellRenderer.*</exclude>
+                        <exclude>dk/cphbusiness/xpscrumproject/Gui*</exclude>
+                        <exclude>dk/cphbusiness/xpscrumproject/databasesetup/*</exclude>
+                        <exclude>dk/cphbusiness/xpscrumproject/pu/*_*</exclude>
+                        <exclude>dk/cphbusiness/xpscrumproject/test/*_*</exclude>
+                    </excludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
-    <repositories>
-        <repository>
-            <id>unknown-jars-temp-repo</id>
-            <name>A temporary repository created by NetBeans for libraries and jars it could not identify. Please replace the dependencies in this repository with correct ones and delete this repository.</name>
-            <url>file:${project.basedir}/lib</url>
-        </repository>
-    </repositories>
 </project>
