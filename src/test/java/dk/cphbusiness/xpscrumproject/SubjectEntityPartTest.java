@@ -26,7 +26,7 @@ public class SubjectEntityPartTest {
     @Test
     public void setGetPool(){
         subject = new Subject();
-        pool = new Pool();
+        pool = new Pool("");
         subject.setPool(pool);
         Pool result = subject.getPool();
         assertThat(result.equals(pool),is(true));

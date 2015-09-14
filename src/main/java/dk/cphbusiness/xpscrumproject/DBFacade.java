@@ -68,16 +68,20 @@ public class DBFacade {
         return students;
     }
 
-    public Pool createPool(Pool p) {
-        em.getTransaction().begin();
-        em.persist(p);
-        em.getTransaction().commit();
-        return p;
+    public List<Pool> createPool(List<Pool> pools) {
+
+        for (Pool p : pools) {
+            em.getTransaction().begin();
+            em.persist(p);
+            em.getTransaction().commit();
+        }
+
+        return pools;
     }
 
-    public Pool getPool() {
+    public List<Pool> getPool() {
         Query query = em.createQuery("SELECT p FROM Pool p");
         List<Pool> list = query.getResultList();
-        return list.get(0);
+        return list;
     }
 }

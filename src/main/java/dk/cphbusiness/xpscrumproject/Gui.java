@@ -261,8 +261,7 @@ public class Gui extends javax.swing.JFrame {
         if(unList.isEmpty()){
         }else{
             for (int i = 0; i < unList.size(); i++) {
-                Subject subject = control.removeFromUnassigned((Subject)unList.get(i));
-                control.addtoPoolA(subject);
+                control.moveFromTo((Subject)unList.get(i), "Unassigned", "A");
                 
             }
             setjList();
@@ -275,9 +274,7 @@ public class Gui extends javax.swing.JFrame {
         if(unList.isEmpty()){
         }else{
             for (int i = 0; i < unList.size(); i++) {
-                Subject subject = control.removeFromUnassigned((Subject)unList.get(i));
-                control.addtoPoolB(subject);
-                
+                control.moveFromTo((Subject)unList.get(i), "Unassigned", "B");
             }
         }
         setjList();
@@ -288,22 +285,19 @@ public class Gui extends javax.swing.JFrame {
         if(jListPoolA.getSelectedIndex() != -1){
         List aList = jListPoolA.getSelectedValuesList();
             for (int i = 0; i < aList.size(); i++) {
-                Subject subject = control.removeFromPoolA((Subject)aList.get(i));
-                control.addToUnassigned(subject);
+                control.moveFromTo((Subject)aList.get(i), "A", "Unassigned");
             }
         }
         if(jListPoolB.getSelectedIndex() != -1){
         List bList = jListPoolB.getSelectedValuesList();
             for (int i = 0; i < bList.size(); i++) {
-                Subject subject = control.removeFromPoolB((Subject)bList.get(i));
-                control.addToUnassigned(subject);
+                control.moveFromTo((Subject)bList.get(i), "B", "Unassigned");
             }
         }
         if(jListPoolC.getSelectedIndex() != -1){
-        List bList = jListPoolC.getSelectedValuesList();
-            for (int i = 0; i < bList.size(); i++) {
-                Subject subject = control.removeFromPoolC((Subject)bList.get(i));
-                control.addToUnassigned(subject);
+        List cList = jListPoolC.getSelectedValuesList();
+            for (int i = 0; i < cList.size(); i++) {
+                control.moveFromTo((Subject)cList.get(i), "C", "Unassigned");
             }
         }
        setjList();
@@ -319,8 +313,7 @@ public class Gui extends javax.swing.JFrame {
         if(unList.isEmpty()){
         }else{
             for (int i = 0; i < unList.size(); i++) {
-                Subject subject = control.removeFromUnassigned((Subject)unList.get(i));
-                control.addtoPoolC(subject);
+                control.moveFromTo((Subject)unList.get(i), "Unassigned", "C");
                 
             }
         }
@@ -329,7 +322,7 @@ public class Gui extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonToPoolCActionPerformed
 
     private void jButtonClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearActionPerformed
-        control.resetPools();
+//        control.resetPools();
         setjList();
         getCalculatedStudents();
     }//GEN-LAST:event_jButtonClearActionPerformed

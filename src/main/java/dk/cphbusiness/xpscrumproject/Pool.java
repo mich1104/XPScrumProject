@@ -25,117 +25,51 @@ public class Pool implements Serializable, PoolInterface {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-
+    private String name;
+   
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pool")
-    private List<Subject> unassignedPool;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pool")
-    private List<Subject> poolA;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pool")
-    private List<Subject> poolB;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pool")
-    private List<Subject> poolC;
+    private List<Subject> pool;
 
     public Pool() {
-        this.unassignedPool = new ArrayList();
-        this.poolA = new ArrayList();
-        this.poolB = new ArrayList();
-        this.poolC = new ArrayList();
+        this.pool = new ArrayList();
+    }
+
+    public Pool(String name) {
+        this.name = name;
+        this.pool = new ArrayList();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
     
     @Override
-    public void addToPoolA(Subject fag) {
-        poolA.add(fag);
+    public void addToPool(Subject fag) {
+        pool.add(fag);
+        fag.setPool(this);
     }
 
     @Override
-    public List<Subject> getPoolA() {
-        return poolA;
+    public List<Subject> getPool() {
+        return pool;
     }
 
     @Override
-    public void addToPoolB(Subject fag) {
-        poolB.add(fag);
-    }
-
-    @Override
-    public List<Subject> getPoolB() {
-        return poolB;
-    }
-
-    @Override
-    public Subject removeFromPoolA(Subject fag) {
-        if (poolA.contains(fag)) {
-            poolA.remove(fag);
-            return fag;
-        } else {
-            return null;
-        }
-
-    }
-
-    @Override
-    public Subject removeFromPoolB(Subject fag) {
-        if (poolB.contains(fag)) {
-            poolB.remove(fag);
-            return fag;
-        } else {
-            return null;
-        }
-    }
-
-    @Override
-    public Subject removeFromUnassignedPool(Subject fag) {
-        if (unassignedPool.contains(fag)) {
-            unassignedPool.remove(fag);
-            return fag;
-        } else {
-            return null;
-        }
-    }
-
-    @Override
-    public void addToUnassigned(Subject fag) {
-        unassignedPool.add(fag);
-    }
-
-    @Override
-    public void addToPoolC(Subject fag) {
-        poolC.add(fag);
-    }
-
-    @Override
-    public List<Subject> getPoolC() {
-        return poolC;
-    }
-
-    @Override
-    public Subject removeFromPoolC(Subject fag) {
-        if (poolC.contains(fag)) {
-            poolC.remove(fag);
+    public Subject removeFromPool(Subject fag) {
+        if (pool.contains(fag)) {
+            pool.remove(fag);
             return fag;
         } else {
             return null;
         }
     }
     
-    public List<Subject> getUnassignedPool() {
-        return unassignedPool;
-    }
-
-    public void setUnassignedPool(List<Subject> unassignedPool) {
-        this.unassignedPool = unassignedPool;
-    }
-
-    public void setPoolA(List<Subject> poolA) {
-        this.poolA = poolA;
-    }
-
-    public void setPoolB(List<Subject> poolB) {
-        this.poolB = poolB;
-    }
-
-    public void setPoolC(List<Subject> poolC) {
-        this.poolC = poolC;
+       public void setPool(List<Subject> poolC) {
+        this.pool = poolC;
     }
     
     public int getId() {
@@ -171,19 +105,19 @@ public class Pool implements Serializable, PoolInterface {
         return "dk.cphbusiness.xpscrumproject.PoolEntity[ id=" + id + " ]";
     }
     
+
     @Override
-    public boolean reset() {
-        List<Subject> reset = new ArrayList();
-        reset.addAll(unassignedPool);
-        reset.addAll(poolA);
-        reset.addAll(poolB);
-        reset.addAll(poolC);
-        poolA = new ArrayList();
-        poolB = new ArrayList();
-        poolC = new ArrayList();
-        unassignedPool = reset;
-        return true;
+    public List<Subject> removeAll() {
         
+        List<Subject> temp = new ArrayList(); 
+        temp.addAll(pool);
+        pool.removeAll(temp);
+        return temp;
+    }
+
+    @Override
+    public void addToPool(List<Subject> fag) {
+        pool.addAll(fag);
     }
 
 }

@@ -13,6 +13,7 @@ import static org.hamcrest.CoreMatchers.is;
 import org.junit.Test;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+import org.junit.Before;
 
 /**
  *
@@ -20,8 +21,12 @@ import static org.junit.Assert.assertTrue;
  */
 public class ControllerTest {
 
-    private final Pool pool;
+//    private final Pool poolA;
+//    private final Pool poolB;
+//    private final Pool poolC;
+//    private final Pool poolUnassigned;
     private final Controller control;
+    private PoolManager pm;
 //    private final Mockery context = new JUnitRuleMockery();
 //    private final Mockery contextForClassMocking = new Mockery() {
 //        {
@@ -33,23 +38,31 @@ public class ControllerTest {
 
 //        pool = context.mock(PoolInterface.class, "pool");
         control = new Controller();
-        pool = new Pool();
+        pm = new PoolManager();
+//        poolA = new Pool("A");
+//        poolB = new Pool("B");
+//        poolC = new Pool("C");
+//        poolUnassigned = new Pool("Unassigned");
     }
 
     @Test
     public void testInjector() {
-        control.setPool(pool);
-        assertThat(control.getPool(), is(pool));
+        pm = new PoolManager();
+        control.setPm(pm);
+        assertThat(control.getPm(), is(pm));
     }
 
     @Test
     public void testGetUnassignedList() {
 
+        pm = new PoolManager();
+
         Subject android = new Subject("android", "test", "test");
         Subject ai = new Subject("ai", "test", "test");
-        pool.addToUnassigned(ai);
-        pool.addToUnassigned(android);
-        control.setPool(pool);
+        pm.getPoolUnassigned().add(ai);
+        pm.getPoolUnassigned().add(android);
+        control.setPm(pm);
+//        control.setPool(pool);
 //        List<Subject> expectationReturn = new ArrayList<Subject>();
 //        {
 //            {
@@ -71,7 +84,7 @@ public class ControllerTest {
 
     @Test
     public void testGetPoolAList() {
-        control.setPool(pool);
+//        control.setPool(pool);
 //        List<SubjectInterface> expectationReturn = new ArrayList<SubjectInterface>() {
 //            {
 //                add(context.mock(SubjectInterface.class, "Android"));
@@ -85,10 +98,14 @@ public class ControllerTest {
 //                will(returnValue(expectationReturn));
 //            }
 //        });
+        pm = new PoolManager();
+
         Subject android = new Subject("android", "test", "test");
         Subject ai = new Subject("ai", "test", "test");
-        control.addtoPoolA(ai);
-        control.addtoPoolA(android);
+        pm.getPoolA().add(ai);
+        pm.getPoolA().add(android);
+        control.setPm(pm);
+
         List<Subject> listOfSubjects = control.getPoolAList();
 
         assertThat(listOfSubjects.size(), is(2));
@@ -96,7 +113,7 @@ public class ControllerTest {
 
     @Test
     public void testGetPoolBList() {
-        control.setPool(pool);
+//        control.setPool(pool);
 //        List<SubjectInterface> expectationReturn = new ArrayList<SubjectInterface>() {
 //            {
 //                add(context.mock(SubjectInterface.class, "Android"));
@@ -110,10 +127,14 @@ public class ControllerTest {
 //                will(returnValue(expectationReturn));
 //            }
 //        });
+        pm = new PoolManager();
+
         Subject android = new Subject("android", "test", "test");
         Subject ai = new Subject("ai", "test", "test");
-        control.addtoPoolB(ai);
-        control.addtoPoolB(android);
+        pm.getPoolB().add(ai);
+        pm.getPoolB().add(android);
+        control.setPm(pm);
+
         List<Subject> listOfSubjects = control.getPoolBList();
 
         assertThat(listOfSubjects.size(), is(2));
@@ -121,85 +142,37 @@ public class ControllerTest {
 
     @Test
     public void testGetPoolCList() {
-        control.setPool(pool);
+//        control.setPool(pool);
+        pm = new PoolManager();
+
         Subject android = new Subject("android", "test", "test");
         Subject ai = new Subject("ai", "test", "test");
-        control.addtoPoolC(ai);
-        control.addtoPoolC(android);
+        pm.getPoolC().add(ai);
+        pm.getPoolC().add(android);
+        control.setPm(pm);
         List<Subject> listOfSubjects = control.getPoolCList();
 
         assertThat(listOfSubjects.size(), is(2));
     }
 
     @Test
-    public void testAddToAndRemoveFromPoolA() {
-        control.setPool(pool);
+    public void testMoveFromTO() {
 
-//        Subject android = contextForClassMocking.mock(Subject.class, "android");
-//
-//        context.checking(new Expectations() {
-//            {
-//                oneOf(pool).addToPoolA(android);
-//                oneOf(pool).removeFromPoolA(android);
-//                will(returnValue(android));
-//            }
-//        });
-        Subject subject = new Subject("android", "test", "test");
+        pm = new PoolManager();
 
-        control.addtoPoolA(subject);
-        Subject returned = control.removeFromPoolA(subject);
-
-        assertThat(returned, is(subject));
-    }
-
-    @Test
-    public void testAddToAndRemoveFromPoolB() {
-        control.setPool(pool);
-
-//        Subject android = contextForClassMocking.mock(Subject.class, "android");
-//
-//        context.checking(new Expectations() {
-//            {
-//                oneOf(pool).addToPoolB(android);
-//                oneOf(pool).removeFromPoolB(android);
-//                will(returnValue(android));
-//            }
-//        });
         Subject android = new Subject("android", "test", "test");
-        control.addtoPoolB(android);
-        Subject returned = control.removeFromPoolB(android);
-
-        assertThat(returned, is(android));
-    }
-
-    @Test
-    public void testAddToAndRemoveFromPoolC() {
-        control.setPool(pool);
-        Subject android = new Subject("android", "test", "test");
-        control.addtoPoolC(android);
-        Subject returned = control.removeFromPoolC(android);
-
-        assertThat(returned, is(android));
-    }
-
-    @Test
-    public void testAddToAndRemoveFromUnassigned() {
-        control.setPool(pool);
-
-//        Subject android = contextForClassMocking.mock(Subject.class, "android");
-//
-//        context.checking(new Expectations() {
-//            {
-//                oneOf(pool).addToUnassigned(android);
-//                oneOf(pool).removeFromUnassignedPool(android);
-//                will(returnValue(android));
-//            }
-//        });
-        Subject android = new Subject("android", "test", "test");
-        control.addToUnassigned(android);
-        Subject returned = control.removeFromUnassigned(android);
-
-        assertThat(returned, is(android));
+        Subject ai = new Subject("ai", "test", "test");
+        pm.getPoolUnassigned().add(ai);
+        pm.getPoolUnassigned().add(android);
+        control.setPm(pm);
+        
+        assertThat(control.getUnassignedList().size(),is(2));
+        
+        control.moveFromTo(ai, "Unassigned", "B");
+        
+        assertThat(control.getPoolBList().size(),is(1));
+        assertThat(control.getUnassignedList().size(),is(1));
+        
     }
 
     @Test
@@ -235,14 +208,13 @@ public class ControllerTest {
         assertTrue(control.calculate().size() == 0);
     }
 
-    @Test
-    public void testSubmitPools() {
-        Pool p = new Pool();
-        assertTrue(control.submitPools(false));
-    }
-
-    @Test
-    public void testReset() {
-        assertTrue(control.resetPools());
-    }
+//    @Test
+//    public void testSubmitPools() {
+//        Pool p = new Pool();
+//        assertTrue(control.submitPools(false));
+//    }
+//    @Test
+//    public void testReset() {
+//        assertTrue(control.resetPools());
+//    }
 }

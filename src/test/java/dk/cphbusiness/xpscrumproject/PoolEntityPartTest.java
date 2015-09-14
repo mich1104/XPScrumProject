@@ -26,10 +26,7 @@ public class PoolEntityPartTest {
     @Test
     public void testEntityConstructor(){
         pool = new Pool();
-        assertThat(pool.getPoolA().isEmpty(), is(true));
-        assertThat(pool.getPoolB().isEmpty(), is(true));
-        assertThat(pool.getPoolC().isEmpty(), is(true));
-        assertThat(pool.getUnassignedPool().isEmpty(), is(true));
+        assertThat(pool.getPool().isEmpty(), is(true));
     }
     
     @Test
@@ -61,11 +58,7 @@ public class PoolEntityPartTest {
         List<Subject> list = new ArrayList();
         list.add(new Subject("test", null, null));
         pool = new Pool();
-        pool.setPoolA(list);
-        assertThat(pool.getPoolA(), is(list));
-        pool.setPoolB(list);
-        assertThat(pool.getPoolB(), is(list));
-        pool.setPoolC(list);
-        assertThat(pool.getPoolC(), is(list));
+        pool.setPool(list);
+        assertThat(pool.getPool(), is(list));
     }
 }

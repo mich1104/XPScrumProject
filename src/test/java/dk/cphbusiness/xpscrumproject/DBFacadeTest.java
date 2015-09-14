@@ -67,24 +67,43 @@ public class DBFacadeTest {
         Subject s3 = new Subject("C#", null, null);
         Subject s4 = new Subject("COBOL", null, null);
         
+        
+        
         persistedSubjects.add(s1);
         persistedSubjects.add(s2);
         persistedSubjects.add(s3);
         persistedSubjects.add(s4);
 
-        Pool pool = new Pool();
-        pool.addToPoolA(s1);
-        pool.addToPoolB(s2);
-        pool.addToPoolC(s3);
-        pool.addToUnassigned(s4);
+        PoolManager pm = new PoolManager();
+        
+        pm.getPoolUnassigned().add(s1);
+        pm.getPoolUnassigned().add(s2);
+        pm.getPoolUnassigned().add(s3);
+        pm.getPoolUnassigned().add(s4);
 
-        dbf.createPool(pool);
-        Pool fromDB = dbf.getPool();
-        assertThat(pool.equals(fromDB), is(true));
+        List<Pool> pools = pm.getAllPools();
+        
+        s1.setPool(pools.get(3));
+        s2.setPool(pools.get(3));
+        s3.setPool(pools.get(3));
+        s4.setPool(pools.get(3));
+        
+        
+                
+        pools = dbf.createPool(pools);
+        List<Pool> fromDB = dbf.getPool();
+        
+        for (int i = 0; i < pools.size(); i++) {
+            System.out.println("pools: "+pools.get(i));
+            System.out.println("fromDB: "+pools.get(i));
+        }
+        assertThat(pools.equals(fromDB), is(true));
 
         List<Subject> list = dbf.getAllSubjects();
         assertThat(list.size(), is(4));
-        assertThat(pool.getPoolA().get(0).equals(s1), is(true));
+        for (Subject s : list) {
+            assertThat(s.getPool().getName().equals("Unassigned"),is(true));
+        }
         
     }
     
@@ -92,7 +111,7 @@ public class DBFacadeTest {
     public void testCreateGetStudent() {
         Student s1 = new Student("Kent");
         Student s2 = new Student("Karsten");
-        
+
         persistedStudents.add(s1);
         persistedStudents.add(s2);
 
@@ -100,7 +119,7 @@ public class DBFacadeTest {
         dbf.createStudent(s2);
         List<Student> sListDB = dbf.getAllStudents();
         assertThat(sListDB.size() == 2, is(true));
-
+        
         Student s1db = dbf.getStudent(s1.getId());
         assertThat(s1.equals(s1db), is(true));
         

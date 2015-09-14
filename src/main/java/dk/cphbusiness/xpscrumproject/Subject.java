@@ -26,7 +26,6 @@ public class Subject implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-
     private String title;
     @Transient
     private String description;
@@ -36,18 +35,31 @@ public class Subject implements Serializable {
     private List<Student> studentFirstPrio;
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Student> studentSecondPrio;
+    
     @ManyToOne(cascade = CascadeType.ALL)
     private Pool pool;
+    
+
 
     public Subject() {
     }
 
-    public Subject(String title, String description, String teacher) {
+    public Subject(String title, String description, String teacher ) {
         this.title = title;
         this.description = description;
         this.teacher = teacher;
     }
 
+    public Pool getPool() {
+        return pool;
+    }
+
+    public void setPool(Pool pool) {
+        this.pool = pool;
+    }
+
+    
+    
     public String getDescription() {
         return description;
     }
@@ -86,14 +98,6 @@ public class Subject implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public Pool getPool() {
-        return pool;
-    }
-
-    public void setPool(Pool pool) {
-        this.pool = pool;
     }
 
     public int getId() {

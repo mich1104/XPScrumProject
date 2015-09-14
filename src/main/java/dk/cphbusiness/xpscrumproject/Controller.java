@@ -17,72 +17,43 @@ import java.util.logging.Logger;
  */
 public class Controller implements ControllerInterface {
 
-    private Pool pool;
+    private PoolManager pm;
     private CSVFileSaver csvSaver;
     private List<Student> students;
     private SatisfactionCalculator calc;
     private String[] subs;
+    
     public Controller(){
-        pool = new Pool();
+        pm = new PoolManager();
         csvSaver = new CSVFileSaver();
-        subs = new String[]{"C#", "Python", "Android", "SW Design", "Games", "Databases", "Test", "Arduino"};
-        for(String s:subs){
-            Subject subject = new Subject(s,"","");
-            pool.addToUnassigned(subject);
-        }
         calc = new SatisfactionCalculator();
         this.students = new ArrayList();
     }
     
     @Override
     public List<Subject> getUnassignedList() {
-        return pool.getUnassignedPool();
+        return pm.getPoolUnassigned();
     }
 
     @Override
     public List<Subject> getPoolAList() {
-        return pool.getPoolA();
+        return pm.getPoolA();
     }
 
     @Override
     public List<Subject> getPoolBList() {
-        return pool.getPoolB();
+        return pm.getPoolB();
     }
 
     @Override
-    public void addtoPoolA(Subject fag) {
-        pool.addToPoolA(fag);
-    }
-
-    @Override
-    public Subject removeFromPoolA(Subject fag) {
-        return pool.removeFromPoolA(fag);
-    }
-
-    @Override
-    public void addtoPoolB(Subject fag) {
-        pool.addToPoolB(fag);
-    }
-
-    @Override
-    public Subject removeFromPoolB(Subject fag) {
-        return pool.removeFromPoolB(fag);
-    }
-
-    @Override
-    public void addToUnassigned(Subject fag) {
-        pool.addToUnassigned(fag);
-    }
-    
-    @Override
-    public Subject removeFromUnassigned(Subject fag) {
-        return pool.removeFromUnassignedPool(fag);
+    public List<Subject> getPoolCList() {
+        return pm.getPoolC();
     }
     
     @Override
     public List<Student> calculate() {
        
-        return  calc.calculate(students, pool.getPoolA(), pool.getPoolB(),pool.getPoolC()); 
+        return  calc.calculate(students, pm.getPoolA(), pm.getPoolB(),pm.getPoolC()); 
     }
     
     @Override
@@ -103,37 +74,28 @@ public class Controller implements ControllerInterface {
     
     @Override
     public Boolean submitPools(boolean manual) {
-        return csvSaver.saveFile(manual, pool.getUnassignedPool(), pool.getPoolA(), pool.getPoolB(),pool.getPoolC());
+        return csvSaver.saveFile(manual, pm.getPoolUnassigned(), pm.getPoolA(), pm.getPoolB(),pm.getPoolC());
     }
 
-    public void setPool(Pool pool){
-        this.pool = pool;
-    }
-    
-    public PoolInterface getPool(){
-        return pool;
-    }
 
     @Override
-    public List<Subject> getPoolCList() {
-        return pool.getPoolC();
-    }
-
-    @Override
-    public void addtoPoolC(Subject fag) {
-        pool.addToPoolC(fag);
-    }
-
-    @Override
-    public Subject removeFromPoolC(Subject fag) {
-        return pool.removeFromPoolC(fag);
+    public void moveFromTo(Subject fag, String from, String to) {
+        pm.moveSubject(fag, from, to);
     }
 
     @Override
     public boolean resetPools() {
-        return pool.reset();
+        return pm.reset();
+    }
+
+    public PoolManager getPm() {
+        return pm;
+    }
+
+    public void setPm(PoolManager pm) {
+        this.pm = pm;
     }
     
-   
+    
 
 }

@@ -18,14 +18,7 @@ public interface ControllerInterface {
     List<Subject> getPoolBList();
     List<Subject> getPoolCList();
     Boolean submitPools(boolean manual);
-    void addtoPoolA(Subject fag);
-    Subject removeFromPoolA(Subject fag);
-    void addtoPoolB(Subject fag);
-    Subject removeFromPoolB(Subject fag);
-    void addtoPoolC(Subject fag);
-    Subject removeFromPoolC(Subject fag);
-    void addToUnassigned(Subject fag);
-    Subject removeFromUnassigned(Subject fag);
+    void moveFromTo(Subject fag, String from, String to);
     List<Student> calculate();
     void loadStudents(String fileName);
     List<Student> getStudents();
