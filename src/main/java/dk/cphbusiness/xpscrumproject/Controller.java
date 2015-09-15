@@ -5,6 +5,10 @@
  */
 package dk.cphbusiness.xpscrumproject;
 
+import dk.cphbusiness.xpscrumproject.interfaces.ControllerInterface;
+import dk.cphbusiness.xpscrumproject.entity.Pool;
+import dk.cphbusiness.xpscrumproject.entity.Student;
+import dk.cphbusiness.xpscrumproject.entity.Subject;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;

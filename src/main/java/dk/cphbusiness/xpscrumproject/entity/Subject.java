@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dk.cphbusiness.xpscrumproject;
+package dk.cphbusiness.xpscrumproject.entity;
 
 import java.io.Serializable;
 import java.util.List;

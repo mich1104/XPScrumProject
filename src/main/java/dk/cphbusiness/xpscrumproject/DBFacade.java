@@ -5,6 +5,9 @@
  */
 package dk.cphbusiness.xpscrumproject;
 
+import dk.cphbusiness.xpscrumproject.entity.Pool;
+import dk.cphbusiness.xpscrumproject.entity.Student;
+import dk.cphbusiness.xpscrumproject.entity.Subject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;

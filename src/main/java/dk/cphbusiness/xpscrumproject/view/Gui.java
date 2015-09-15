@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dk.cphbusiness.xpscrumproject;
+package dk.cphbusiness.xpscrumproject.view;
 
+import dk.cphbusiness.xpscrumproject.Controller;
+import dk.cphbusiness.xpscrumproject.entity.Student;
+import dk.cphbusiness.xpscrumproject.entity.Subject;
 import java.awt.Color;
 import java.util.List;
 import javax.swing.DefaultListModel;
@@ -132,7 +135,6 @@ public class Gui extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 600));
-        setPreferredSize(new java.awt.Dimension(800, 600));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jListPoolA.setModel(new javax.swing.AbstractListModel() {

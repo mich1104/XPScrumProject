@@ -1,6 +1,7 @@
 
 package dk.cphbusiness.xpscrumproject;
 
+import dk.cphbusiness.xpscrumproject.entity.Student;
 import java.io.IOError;
 import java.io.IOException;
 import java.io.PrintWriter;

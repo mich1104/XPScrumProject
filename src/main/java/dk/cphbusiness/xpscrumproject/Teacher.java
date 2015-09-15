@@ -5,6 +5,8 @@
  */
 package dk.cphbusiness.xpscrumproject;
 
+import dk.cphbusiness.xpscrumproject.interfaces.TeacherInterface;
+
 /**
  *
  * @author Muggi

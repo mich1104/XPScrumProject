@@ -5,6 +5,8 @@
  */
 package dk.cphbusiness.xpscrumproject;
 
+import dk.cphbusiness.xpscrumproject.entity.Pool;
+import dk.cphbusiness.xpscrumproject.entity.Subject;
 import static org.hamcrest.CoreMatchers.is;
 import org.junit.After;
 import static org.junit.Assert.assertThat;

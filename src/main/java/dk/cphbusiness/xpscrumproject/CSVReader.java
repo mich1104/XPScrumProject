@@ -5,6 +5,9 @@
  */
 package dk.cphbusiness.xpscrumproject;
 
+import dk.cphbusiness.xpscrumproject.interfaces.CSVReaderInterface;
+import dk.cphbusiness.xpscrumproject.entity.Student;
+import dk.cphbusiness.xpscrumproject.entity.Subject;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;

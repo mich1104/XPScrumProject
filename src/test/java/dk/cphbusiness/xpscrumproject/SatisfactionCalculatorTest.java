@@ -5,6 +5,8 @@
  */
 package dk.cphbusiness.xpscrumproject;
 
+import dk.cphbusiness.xpscrumproject.entity.Student;
+import dk.cphbusiness.xpscrumproject.entity.Subject;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.After;

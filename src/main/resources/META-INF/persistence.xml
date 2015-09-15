@@ -2,9 +2,9 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="PU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>dk.cphbusiness.xpscrumproject.Subject</class>
-    <class>dk.cphbusiness.xpscrumproject.Student</class>
-    <class>dk.cphbusiness.xpscrumproject.Pool</class>
+    <class>dk.cphbusiness.xpscrumproject.entity.Subject</class>
+    <class>dk.cphbusiness.xpscrumproject.entity.Student</class>
+    <class>dk.cphbusiness.xpscrumproject.entity.Pool</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@datdb.cphbusiness.dk:1521:DAT"/>
       <property name="javax.persistence.jdbc.user" value="cphmo115"/>
@@ -16,9 +16,9 @@
   </persistence-unit>
   <persistence-unit name="testPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>dk.cphbusiness.xpscrumproject.Subject</class>
-    <class>dk.cphbusiness.xpscrumproject.Student</class>
-    <class>dk.cphbusiness.xpscrumproject.Pool</class>
+    <class>dk.cphbusiness.xpscrumproject.entity.Subject</class>
+    <class>dk.cphbusiness.xpscrumproject.entity.Student</class>
+    <class>dk.cphbusiness.xpscrumproject.entity.Pool</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@datdb.cphbusiness.dk:1521:DAT"/>
       <property name="javax.persistence.jdbc.user" value="cphdj85"/>

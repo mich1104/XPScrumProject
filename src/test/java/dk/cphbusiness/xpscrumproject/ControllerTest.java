@@ -5,6 +5,8 @@
  */
 package dk.cphbusiness.xpscrumproject;
 
+import dk.cphbusiness.xpscrumproject.entity.Pool;
+import dk.cphbusiness.xpscrumproject.entity.Subject;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;

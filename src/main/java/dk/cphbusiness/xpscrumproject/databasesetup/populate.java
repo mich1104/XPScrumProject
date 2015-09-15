@@ -6,9 +6,9 @@
 package dk.cphbusiness.xpscrumproject.databasesetup;
 
 import dk.cphbusiness.xpscrumproject.DBFacade;
-import dk.cphbusiness.xpscrumproject.Pool;
+import dk.cphbusiness.xpscrumproject.entity.Pool;
 import dk.cphbusiness.xpscrumproject.PoolManager;
-import dk.cphbusiness.xpscrumproject.Subject;
+import dk.cphbusiness.xpscrumproject.entity.Subject;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -7,6 +7,7 @@ package dk.cphbusiness.xpscrumproject;
  */
 
 
+import dk.cphbusiness.xpscrumproject.entity.Subject;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertTrue;

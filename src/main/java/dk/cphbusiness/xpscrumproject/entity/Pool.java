@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dk.cphbusiness.xpscrumproject;
+package dk.cphbusiness.xpscrumproject.entity;
 
+import dk.cphbusiness.xpscrumproject.interfaces.PoolInterface;
+import dk.cphbusiness.xpscrumproject.entity.Subject;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

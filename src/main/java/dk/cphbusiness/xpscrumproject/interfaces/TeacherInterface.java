@@ -3,16 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dk.cphbusiness.xpscrumproject;
-
-import java.util.List;
+package dk.cphbusiness.xpscrumproject.interfaces;
 
 /**
  *
  * @author Muggi
  */
-public interface CSVFileSaverInterface {
+public interface TeacherInterface {
     
-    boolean saveFile(boolean manualSave, List<Subject> unaPool, List<Subject> poolA, List<Subject> poolB,List<Subject> poolC);
+    void setName(String name);
+    String getName();
     
 }

@@ -85,11 +85,10 @@
                 <version>0.7.5.201505241946</version>
                 <configuration>
                     <excludes>
-                        <exclude>dk/cphbusiness/xpscrumproject/MyNewCellRenderer.*</exclude>
-                        <exclude>dk/cphbusiness/xpscrumproject/Gui*</exclude>
+                        <exclude>dk/cphbusiness/xpscrumproject/view/*</exclude>
                         <exclude>dk/cphbusiness/xpscrumproject/databasesetup/*</exclude>
-                        <exclude>dk/cphbusiness/xpscrumproject/pu/*_*</exclude>
-                        <exclude>dk/cphbusiness/xpscrumproject/test/*_*</exclude>
+                        <exclude>dk/cphbusiness/xpscrumproject/entity/pu/*_*</exclude>
+                        <exclude>dk/cphbusiness/xpscrumproject/entity/test/*_*</exclude>
                     </excludes>
                 </configuration>
                 <executions>

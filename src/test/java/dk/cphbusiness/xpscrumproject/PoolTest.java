@@ -5,6 +5,8 @@ package dk.cphbusiness.xpscrumproject;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import dk.cphbusiness.xpscrumproject.entity.Pool;
+import dk.cphbusiness.xpscrumproject.entity.Subject;
 import java.util.ArrayList;
 import java.util.List;
 import static org.hamcrest.CoreMatchers.is;

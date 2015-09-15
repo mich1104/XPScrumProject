@@ -1,6 +1,7 @@
 
 package dk.cphbusiness.xpscrumproject;
 
+import dk.cphbusiness.xpscrumproject.entity.Student;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;

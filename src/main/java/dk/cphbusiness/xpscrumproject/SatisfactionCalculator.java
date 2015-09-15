@@ -1,5 +1,8 @@
 package dk.cphbusiness.xpscrumproject;
 
+import dk.cphbusiness.xpscrumproject.interfaces.SatisfactionCalculatorInterface;
+import dk.cphbusiness.xpscrumproject.entity.Student;
+import dk.cphbusiness.xpscrumproject.entity.Subject;
 import java.util.ArrayList;
 import java.util.List;
 
