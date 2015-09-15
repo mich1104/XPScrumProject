@@ -36,7 +36,6 @@ public class Controller implements ControllerInterface {
     @Override
     public void loadDB(){
         pm.getPoolUnassigned().addAll(dbf.getAllSubjects());
-        System.out.println(pm.getPoolUnassigned().size());
         List<Pool> pool = dbf.getPools();
         pm.setPools(pool.get(0), pool.get(1), pool.get(2), pool.get(3));
     }
