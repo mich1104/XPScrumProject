@@ -79,7 +79,7 @@ public class DBFacade {
         return pools;
     }
 
-    public List<Pool> getPool() {
+    public List<Pool> getPools() {
         Query query = em.createQuery("SELECT p FROM Pool p");
         List<Pool> list = query.getResultList();
         return list;

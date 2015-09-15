@@ -18,16 +18,27 @@ import java.util.logging.Logger;
 public class Controller implements ControllerInterface {
 
     private PoolManager pm;
+    private DBFacade dbf;
     private CSVFileSaver csvSaver;
     private List<Student> students;
     private SatisfactionCalculator calc;
     private String[] subs;
     
-    public Controller(){
+   
+    public Controller(boolean test){
+        dbf = new DBFacade(test);
         pm = new PoolManager();
         csvSaver = new CSVFileSaver();
         calc = new SatisfactionCalculator();
         this.students = new ArrayList();
+    }
+    
+    @Override
+    public void loadDB(){
+        pm.getPoolUnassigned().addAll(dbf.getAllSubjects());
+        System.out.println(pm.getPoolUnassigned().size());
+        List<Pool> pool = dbf.getPools();
+        pm.setPools(pool.get(0), pool.get(1), pool.get(2), pool.get(3));
     }
     
     @Override
@@ -73,8 +84,10 @@ public class Controller implements ControllerInterface {
     }
     
     @Override
-    public Boolean submitPools(boolean manual) {
-        return csvSaver.saveFile(manual, pm.getPoolUnassigned(), pm.getPoolA(), pm.getPoolB(),pm.getPoolC());
+    public Boolean submitPools() {
+//        return csvSaver.saveFile(manual, pm.getPoolUnassigned(), pm.getPoolA(), pm.getPoolB(),pm.getPoolC());
+        dbf.createPool(pm.getAllPools());
+        return true;
     }
 
 

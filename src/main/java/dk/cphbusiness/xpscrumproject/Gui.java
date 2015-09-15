@@ -28,7 +28,7 @@ public class Gui extends javax.swing.JFrame {
      * Creates new form Gui
      */
     public Gui() {
-        control = new Controller();
+        control = new Controller(false);
         control.loadStudents(null);
         initComponents();
         cellRender = new MyNewCellRenderer();
@@ -37,6 +37,7 @@ public class Gui extends javax.swing.JFrame {
         poolC = new DefaultListModel();
         poolUn = new DefaultListModel();
         studentModel = (DefaultTableModel) jTableResult.getModel();
+        control.loadDB();
         setjList();
         getCalculatedStudents();
     }
@@ -305,7 +306,7 @@ public class Gui extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonRemoveActionPerformed
 
     private void jButtonSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSubmitActionPerformed
-        control.submitPools(false);
+        control.submitPools();
     }//GEN-LAST:event_jButtonSubmitActionPerformed
 
     private void jButtonToPoolCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonToPoolCActionPerformed
@@ -322,7 +323,7 @@ public class Gui extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonToPoolCActionPerformed
 
     private void jButtonClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearActionPerformed
-//        control.resetPools();
+        control.resetPools();
         setjList();
         getCalculatedStudents();
     }//GEN-LAST:event_jButtonClearActionPerformed

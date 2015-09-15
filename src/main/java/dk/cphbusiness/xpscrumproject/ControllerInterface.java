@@ -17,10 +17,11 @@ public interface ControllerInterface {
     List<Subject> getPoolAList();
     List<Subject> getPoolBList();
     List<Subject> getPoolCList();
-    Boolean submitPools(boolean manual);
+    Boolean submitPools();
     void moveFromTo(Subject fag, String from, String to);
     List<Student> calculate();
     void loadStudents(String fileName);
     List<Student> getStudents();
     boolean resetPools();
+    void loadDB();
 }

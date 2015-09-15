@@ -44,6 +44,13 @@ public class PoolTest {
     @After
     public void tearDown() {
     }
+    
+    @Test
+    public void testSetName(){
+       pool.setName("Test");
+       String result = pool.getName();
+       assertThat(result,  is("Test"));
+    }
 
     @Test
     public void addGetRemovePool() {

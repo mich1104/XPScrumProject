@@ -7,13 +7,14 @@ package dk.cphbusiness.xpscrumproject;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import static org.hamcrest.CoreMatchers.is;
 import org.junit.Test;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
-import org.junit.Before;
 
 /**
  *
@@ -37,7 +38,7 @@ public class ControllerTest {
     public ControllerTest() {
 
 //        pool = context.mock(PoolInterface.class, "pool");
-        control = new Controller();
+        control = new Controller(true);
         pm = new PoolManager();
 //        poolA = new Pool("A");
 //        poolB = new Pool("B");
@@ -208,13 +209,64 @@ public class ControllerTest {
         assertTrue(control.calculate().size() == 0);
     }
 
+    @Test
+    public void testSubmitPools() {
+        PoolManager pm = new PoolManager();
+        control.setPm(pm);
+        assertTrue(control.submitPools());
+        
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("testPU");
+        EntityManager em = emf.createEntityManager();
+        
+        List<Pool> pools = pm.getAllPools();
+        for (Pool p : pools) {
+            em.getTransaction().begin();
+            Pool toBeRemoved = em.merge(p);
+            em.remove(toBeRemoved);
+            em.getTransaction().commit();
+        }
+    }
+    @Test
+    public void testReset() {
+        assertTrue(control.resetPools());
+    }
 //    @Test
-//    public void testSubmitPools() {
-//        Pool p = new Pool();
-//        assertTrue(control.submitPools(false));
-//    }
-//    @Test
-//    public void testReset() {
-//        assertTrue(control.resetPools());
+//    public void testLoadDB(){
+//        Pool poolA = new Pool("A");
+//        Pool poolB = new Pool("B");
+//        Pool poolC = new Pool("C");
+//        Pool poolUnassigned = new Pool("Unassigned");
+//        List<Pool> pools = new ArrayList();
+//        pools.add(poolA);
+//        pools.add(poolB);
+//        pools.add(poolC);
+//        pools.add(poolUnassigned);
+//        Subject s1 = new Subject("C#", null, null);
+//        Subject s2 = new Subject("Python", null, null);
+//        Subject s3 = new Subject("Android", null, null);
+//        Subject s4 = new Subject("SW Design", null, null);
+//        poolA.addToPool(s1);
+//        poolB.addToPool(s2);
+//        poolC.addToPool(s3);
+//        poolUnassigned.addToPool(s4);
+//        
+//        assertThat(pm.getPoolA().size(),is(0));
+//        assertThat(pm.getPoolB().size(),is(0));
+//        assertThat(pm.getPoolC().size(),is(0));
+//        assertThat(pm.getPoolUnassigned().size(),is(0));
+//        
+//        DBFacade dbf = new DBFacade(true);
+//        dbf.createPool(pools);
+//        
+//        control.loadDB();
+//        System.out.println(control.getPoolAList().size());
+//        System.out.println(control.getPoolAList().size());
+//        System.out.println(control.getPoolAList().size());
+//        System.out.println(control.getPoolAList().size());
+//        
+//        assertThat(control.getPoolAList().size(),is(1));
+//        assertThat(control.getPoolBList().size(),is(1));
+//        assertThat(control.getPoolCList().size(),is(1));
+//        assertThat(control.getUnassignedList().size(),is(1));
 //    }
 }

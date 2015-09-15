@@ -17,7 +17,7 @@ import org.junit.Test;
  */
 public class PoolManagerTest {
 
-    private PoolManagerInterface pm;
+    private PoolManager pm;
 
     public PoolManagerTest() {
         
@@ -123,5 +123,42 @@ public class PoolManagerTest {
         
         assertThat(pm.getPoolUnassigned().size(), is(3));
     }
+    
+    @Test
+    public void testWrongFrom(){
+        Subject s = new Subject("test", null, null);
+        assertThat(pm.getPoolA().size(), is(0));
+        pm.moveSubject(s, "NoPoolNamedThis", "A");
+        assertThat(pm.getPoolA().size(), is(0));
+    }
 
+    @Test
+    public void testSetPools(){
+        Pool p1 = new Pool("pool1");
+        Pool p2 = new Pool("pool2");
+        Pool p3 = new Pool("pool3");
+        Pool p4 = new Pool("pool4");
+        
+        Subject s1 = new Subject("test1",null,null);
+        Subject s2 = new Subject("test2",null,null);
+        Subject s3 = new Subject("test3",null,null);
+        Subject s4 = new Subject("test4",null,null);
+        
+        pm.getPoolA().add(s1);
+        pm.getPoolB().add(s2);
+        pm.getPoolC().add(s3);
+        pm.getPoolUnassigned().add(s4);
+        
+        assertThat(pm.getPoolA().size(), is(1));
+        assertThat(pm.getPoolB().size(), is(1));
+        assertThat(pm.getPoolC().size(), is(1));
+        assertThat(pm.getPoolUnassigned().size(), is(1));
+        
+        pm.setPools(p1, p2, p3, p4);
+        
+        assertThat(pm.getPoolA().size(), is(0));
+        assertThat(pm.getPoolB().size(), is(0));
+        assertThat(pm.getPoolC().size(), is(0));
+        assertThat(pm.getPoolUnassigned().size(), is(0));
+    }
 }

@@ -21,6 +21,7 @@ public class DBFacadeTest {
     private List<Student> persistedStudents = new ArrayList();
 
     public DBFacadeTest() {
+        
     }
 
     @BeforeClass
@@ -91,7 +92,7 @@ public class DBFacadeTest {
         
                 
         pools = dbf.createPool(pools);
-        List<Pool> fromDB = dbf.getPool();
+        List<Pool> fromDB = dbf.getPools();
         
         for (int i = 0; i < pools.size(); i++) {
             System.out.println("pools: "+pools.get(i));
