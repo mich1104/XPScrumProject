@@ -8,7 +8,9 @@ package dk.cphbusiness.xpscrumproject.view;
 import dk.cphbusiness.xpscrumproject.Controller;
 import dk.cphbusiness.xpscrumproject.entity.Student;
 import dk.cphbusiness.xpscrumproject.entity.Subject;
-import java.awt.Color;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.table.DefaultTableModel;
@@ -76,27 +78,53 @@ public class Gui extends javax.swing.JFrame {
         
     }
     
+    public void sortSubjectLists(List<Subject> list){
+        Collections.sort(list, new Comparator<Subject>(){
+
+            @Override
+            public int compare(Subject s1, Subject s2) {
+                return s1.getTitle().compareToIgnoreCase(s2.getTitle());
+            }
+            
+        });
+    }
+    
+    private void sortList(List<Subject> pool, DefaultListModel model){
+        Object[] toArray = pool.toArray();
+        Arrays.sort(toArray, new Comparator(){
+
+            @Override
+            public int compare(Object o1, Object o2) {
+                Subject s1 = (Subject) o1;
+                Subject s2 = (Subject) o2;
+                
+                return s1.getTitle().compareToIgnoreCase(s2.getTitle());
+            }
+            
+        });
+        model.removeAllElements();
+        for (int i = 0; i < toArray.length; i++) {
+           model.addElement(toArray[i]);
+        }
+    }
+    
     public void setjList(){
         poolA.removeAllElements();
         poolB.removeAllElements();
         poolC.removeAllElements();
         poolUn.removeAllElements();
         List<Subject> poolAList = control.getPoolAList();
-        for (int i = 0; i < poolAList.size(); i++) {
-            poolA.addElement(poolAList.get(i));
-        }
         List<Subject> poolBList = control.getPoolBList();
-        for (int i = 0; i < poolBList.size(); i++) {
-            poolB.addElement(poolBList.get(i));
-        }
         List<Subject> poolCList = control.getPoolCList();
-        for (int i = 0; i < poolCList.size(); i++) {
-            poolC.addElement(poolCList.get(i));
-        }
         List<Subject> poolUnList = control.getUnassignedList();
-        for (int i = 0; i < poolUnList.size(); i++) {
-            poolUn.addElement(poolUnList.get(i));
-        }
+
+        
+        sortList(poolUnList, poolUn);
+        sortList(poolAList, poolA);
+        sortList(poolBList, poolB);
+        sortList(poolCList, poolC);
+        
+        
         jListPoolA.setModel(poolA);
         jListPoolB.setModel(poolB);
         jListPoolC.setModel(poolC);
